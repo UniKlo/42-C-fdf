@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/10/25 15:36:06 by khou             ###   ########.fr        #
+#    Updated: 2018/11/15 20:18:30 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ C = clang
 
 NAME = fdf
 
-FLAGS = -Wall -Wextra -Werror -fsanitize=address #-g
+FLAGS = -Wall -Wextra -Werror # -fsanitize=address #-g
 
 DIR_H = incl/
 
@@ -39,7 +39,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	@make -C libft/
 	@make -C minilibx_macos/
-	@$(C) $(FLAGS) $(LIB_1) $(LIB_2) $(SRCS) -o $(NAME)
+	@$(C) -I $(INCL) $(FLAGS) $(LIB_1) $(LIB_2) $(SRCS) -o $(NAME)
 	@echo "\033[32mBinary \033[1;32m$(NAME)\033[1;0m\033[32m created.\033[0m"
 
 norme:

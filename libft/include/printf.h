@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/27 11:02:48 by khou             ###   ########.fr       */
+/*   Updated: 2018/11/10 23:13:50 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,30 @@
 # include <wchar.h>
 
 /*
+** ---------------------------- COLOR MACROS -----------------------------------
+*/
+
+# define KNRM  "\x1B[0m"
+# define KRED  "\x1B[31m"
+# define KGRN  "\x1B[32m"
+# define KYEL  "\x1B[33m"
+# define KBLU  "\x1B[34m"
+# define KMAG  "\x1B[35m"
+# define KCYN  "\x1B[36m"
+# define KWHT  "\x1B[37m"
+# define BBLK  "\033[1m\033[30m"
+# define BRED  "\033[1m\033[31m"
+# define BGRN  "\033[1m\033[32m"
+# define BYEL  "\033[1m\033[33m"
+# define BBLU  "\033[1m\033[34m"
+# define BMAG  "\033[1m\033[35m"
+# define BCYN  "\033[1m\033[36m"
+# define BWHT  "\033[1m\033[37m"
+
+/*
 ** ------------------------- Structure Definition ------------------------------
 */
+
 typedef struct	s_print
 {
 	char		*format;
