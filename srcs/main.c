@@ -11,13 +11,12 @@
 /* ************************************************************************** */
 
 #include "../incl/fdf.h"
-//#include <stdio.h>
 
 int		deal_key(int key, void *param)
 {
 	param = 0;
 	ft_printf("Hello\n");
-    ft_putstr("world");
+	ft_putstr("world\n");
 	if (key == 53)
 		exit(0);
 	return (0);
@@ -31,9 +30,11 @@ int main()
 	void	*win_ptr;
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "THE View");
+	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "The VIEW");//open the window
 	if (!win_ptr)
 		ft_printf("error.\n");
+	//image
+	//draw something
 	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 //	mlx_hook(win_ptr, x_event, x_mask, (*funct)(), (void *)0);
