@@ -23,10 +23,12 @@ DIR_S = srcs/
 HEADER = fdf.h
 
 SOURCES = main.c\
+            draw_thing.c\
+
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
-INCL = $(addprefix $(DIR_H), $(HEADER))
+INCL = -I $(DIR_H)
 
 FW = -framework OpenGL -framework AppKit
 
@@ -39,7 +41,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	@make -C libft/
 	@make -C minilibx_macos/
-	@$(C) $(FLAGS) $(LIB_1) $(LIB_2) $(SRCS) -o $(NAME)
+	@$(C) $(FLAGS) $(LIB_1) $(LIB_2) $(SRCS) $(INCL) -o $(NAME)
 	@echo "\033[32mBinary \033[1;32m$(NAME)\033[1;0m\033[32m created.\033[0m"
 
 norme:

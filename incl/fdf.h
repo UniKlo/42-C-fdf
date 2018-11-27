@@ -20,13 +20,14 @@
 
 # define KEY_ESC 53
 
-/*
-typedef struct	s_frame
+
+typedef struct		s_frame
 {
 	void		*mlx;
-	void		*window;
-	t_plist		plist; //size & t_point *list
-}				t_frame;
-*/
+	void		*win;
+  //	t_plist		plist; //size & t_point *list
+}			t_frame;
+ 
+void draw(t_frame *frm);
 
 #endif
