@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/11/15 20:18:30 by khou             ###   ########.fr        #
+#    Updated: 2018/11/27 19:22:41 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,11 +41,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	@make -C libft/
 	@make -C minilibx_macos/
-<<<<<<< HEAD
-	@$(C) -I $(INCL) $(FLAGS) $(LIB_1) $(LIB_2) $(SRCS) -o $(NAME)
-=======
 	@$(C) $(FLAGS) $(LIB_1) $(LIB_2) $(SRCS) $(INCL) -o $(NAME)
->>>>>>> a05e75e7de2b266360ff8f54ce118cbec933d2dd
 	@echo "\033[32mBinary \033[1;32m$(NAME)\033[1;0m\033[32m created.\033[0m"
 
 norme:
