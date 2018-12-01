@@ -6,11 +6,17 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2018/11/27 19:23:08 by khou             ###   ########.fr       */
+/*   Updated: 2018/11/29 23:25:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+typedef struct s_point3d {
+	int x;
+	int y;
+	int z;
+}              t_point3d;
 
 int		deal_key(int key, void *param)
 {
@@ -24,10 +30,64 @@ int		deal_key(int key, void *param)
 
 int mlx_hook(void *win, int x_event, int x_mask, int (*funct)(), void *param);
 
-int main()
+#include <stdio.h>
+
+int main(int argc, char **argv)
 {
+	
     t_frame frm;
 
+	if (argc != 2)
+		exit (1);
+//---open file----
+	int fd;
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		exit (1);
+	char	*line = NULL;
+	int row_size = 0;
+	int column_size = 0;
+	int n;
+	int done = 0;
+	char *tmp;
+	while (get_next_line(fd, &line))
+	{
+		tmp = line;
+		row_size++;
+		while (done == 0 && getnbr(&tmp, &n)) 
+			column_size++;
+		done = 1;
+		printf("%s\n", line);// fflush(stdout);
+	}
+	close (fd);
+	printf("row: %d, column: %d\n", row_size, column_size);
+//---create map-----------
+	int i;//column
+	int j = 0;//row
+	int k = 0;//index of the array of struct
+	t_point3d *point_list = malloc(sizeof(t_point3d) * (row_size * column_size));
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+        exit (1);
+	while (get_next_line(fd, &line))
+	{
+		i = 0;
+		while(getnbr(&line, &n))
+		{
+			point_list[k].x = i;
+			point_list[k].y = j;
+			point_list[k].z = n;
+			i++;
+			k++;
+		}
+		j++;
+	}
+	i = 0;
+	while (i < (row_size * column_size))
+	{
+		printf("x: %d, y: %d, z: %d\n",\
+			   point_list[i].x, point_list[i].y, point_list[i].z);
+		i++;
+	}
+	
 //	frame_init(&frm);
 	frm.mlx = mlx_init();
 	frm.win = mlx_new_window(frm.mlx, 480, 300, "The VIEW");//open the window

@@ -1,28 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   getnbr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 12:59:32 by khou              #+#    #+#             */
-/*   Updated: 2018/11/29 15:34:04 by khou             ###   ########.fr       */
+/*   Created: 2018/11/29 15:20:33 by khou              #+#    #+#             */
+/*   Updated: 2018/11/29 15:48:03 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
+//#include <stdio.h>
 
-int		ft_nbrlen(uintmax_t nbr)
+int     getnbr(char **line, int *nbr)
 {
-	int len;
-
-	len = 0;
-	if (nbr == 0)
-		len = 1;
-	while (nbr)
+	while(**line)
 	{
-		nbr /= 10;
-		len++;
+		if (ft_isdigit(**line))
+		{
+			*nbr = atoi(*line);
+//			printf("I m here in getnbr: %d\n", *nbr);
+			*line += ft_nbrlen(*nbr);
+			return (1);
+		}
+		(*line)++;
 	}
-	return (len);
+	return (0);
 }
+
+
+/*
+
+#include <stdio.h>
+
+int     main()
+{
+	char *tab;
+    char nbr[]="   0 2 45 1 5      0 ";
+    int n = 0;
+
+	tab = nbr;
+	while (getnbr(&tab, &n))
+        printf("%d\n", n);
+    return (0);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 21:41:13 by khou              #+#    #+#             */
-/*   Updated: 2018/10/23 23:06:49 by khou             ###   ########.fr       */
+/*   Updated: 2018/11/29 15:49:04 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
+# include <sys/types.h>
 
-# define BUFFER_SIZE 4096
+# define BUFF_SIZE 4096
+# define MAX_FD 4865
 
 typedef unsigned char	t_byte;
 
@@ -27,6 +30,13 @@ typedef	struct			s_list
 	size_t				content_size;
 	struct s_list		*next;
 }						t_list;
+
+/*
+** get next something
+*/
+
+int						get_next_line(const int fd, char **line);
+int						getnbr(char **line, int *nbr);
 
 /*
 ** what it is

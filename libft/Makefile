@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/11/03 15:14:46 by khou             ###   ########.fr        #
+#    Updated: 2018/11/29 15:51:00 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,7 +40,7 @@ LIBFT = ft_atoi.c		ft_bzero.c		ft_count_nbr_block.c	ft_isalnum.c\
 		ft_strncat.c	ft_strncmp.c	ft_strncpy.c			ft_strnequ.c\
 		ft_strnew.c		ft_strnstr.c	ft_strrchr.c			ft_strsplit.c\
 		ft_strstr.c		ft_strsub.c		ft_strtrim.c			ft_tolower.c\
-		ft_toupper.c	ft_nbrlen.c
+		ft_toupper.c	ft_nbrlen.c		get_next_line.c			getnbr.c\
 
 SOURCES =	 printf.c		fmt_dispatch.c			grab_fmt.c\
 			 p_diuox.c		p_s.c			p_c.c\
@@ -57,6 +57,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
+	@echo "\033[32mBinary \033[1;32m$(NAME)\033[1;0m\033[32m created.\033[0m"
 
 ./%.o: ./%.c $(INC)
 	@$(C) $(FLAGS) -I $(DIR_INC) -o $@ -c $<
