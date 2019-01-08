@@ -6,17 +6,12 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2018/11/29 23:25:49 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/02 18:19:10 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-typedef struct s_point3d {
-	int x;
-	int y;
-	int z;
-}              t_point3d;
 
 int		deal_key(int key, void *param)
 {
@@ -47,20 +42,16 @@ int main(int argc, char **argv)
 	int row_size = 0;
 	int column_size = 0;
 	int n;
-	int done = 0;
-	char *tmp;
 	while (get_next_line(fd, &line))
 	{
-		tmp = line;
 		row_size++;
-		while (done == 0 && getnbr(&tmp, &n)) 
-			column_size++;
-		done = 1;
-		printf("%s\n", line);// fflush(stdout);
+		printf("%s\n", line);
 	}
+	while (getnbr(&line, &n)) 
+		column_size++;
 	close (fd);
-	printf("row: %d, column: %d\n", row_size, column_size);
-//---create map-----------
+	printf("nbr of row: %d, nbr of column: %d\n", row_size, column_size);
+//---create array of coordination-----------
 	int i;//column
 	int j = 0;//row
 	int k = 0;//index of the array of struct
@@ -80,6 +71,7 @@ int main(int argc, char **argv)
 		}
 		j++;
 	}
+	close(fd);
 	i = 0;
 	while (i < (row_size * column_size))
 	{
@@ -87,6 +79,10 @@ int main(int argc, char **argv)
 			   point_list[i].x, point_list[i].y, point_list[i].z);
 		i++;
 	}
+//---adjust the coordination with the rotation
+
+	
+
 	
 //	frame_init(&frm);
 	frm.mlx = mlx_init();
