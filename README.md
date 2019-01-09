@@ -3,6 +3,9 @@
 Mathematics of rotation:
 https://www.khanacademy.org/partner-content/pixar/sets/rotation/a/rotation-lesson-brief
 
+How to perform isometric transformations:
+https://github.com/VBrazhnik/FdF/wiki/How-to-perform-isometric-transformations%3F
+
 Bresenham’s Line Generation Algorithm:
 https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/
 
