@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/01/02 18:19:10 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/09 12:35:46 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,52 +41,77 @@ int main(int argc, char **argv)
 	char	*line = NULL;
 	int row_size = 0;
 	int column_size = 0;
-	int n;
+	int z;
 	while (get_next_line(fd, &line))
 	{
 		row_size++;
 		printf("%s\n", line);
 	}
-	while (getnbr(&line, &n)) 
+	while (getnbr(&line, &z)) 
 		column_size++;
 	close (fd);
 	printf("nbr of row: %d, nbr of column: %d\n", row_size, column_size);
 //---create array of coordination-----------
-	int i;//column
-	int j = 0;//row
+	int x;//column
+	int y = 0;//row
 	int k = 0;//index of the array of struct
 	t_point3d *point_list = malloc(sizeof(t_point3d) * (row_size * column_size));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
         exit (1);
 	while (get_next_line(fd, &line))
 	{
-		i = 0;
-		while(getnbr(&line, &n))
+		x = 0;
+		while(getnbr(&line, &z))
 		{
-			point_list[k].x = i;
-			point_list[k].y = j;
-			point_list[k].z = n;
-			i++;
+			point_list[k].x = x;
+			point_list[k].y = y;
+			point_list[k].z = z;
+			x++;
 			k++;
 		}
-		j++;
+		y--;
 	}
 	close(fd);
-	i = 0;
-	while (i < (row_size * column_size))
+//---print out coordinations-----------
+	x = 0;
+	while (x < (row_size * column_size))
 	{
 		printf("x: %d, y: %d, z: %d\n",\
-			   point_list[i].x, point_list[i].y, point_list[i].z);
-		i++;
+			   point_list[x].x, point_list[x].y, point_list[x].z);
+		x++;
 	}
-//---adjust the coordination with the rotation
+//---adjust the coordination with the rotation------
+
+	//rotate along z
+	x = 0;
+	float	angle = 30; 
+	t_vect *z_rot = malloc(sizeof(t_vect) * (row_size * column_size));
+	printf("sin(angle): %f, cos(angle): %f\n", sin(angle), cos(angle));
+	while (x < (row_size * column_size))
+	{
+		z_rot[x].x = point_list[x].x * cos(angle) - point_list[x].y * sin(angle);
+		z_rot[x].y = point_list[x].x * sin(angle) + point_list[x].y * cos(angle);
+		z_rot[x].z = point_list[x].z;
+		x++;
+	}
+
+//---print out coordinations-----------
+	x = 0;
+	while (x < (row_size * column_size))
+	{
+		printf("x: %f, y: %f, z: %f\n",\
+			   z_rot[x].x, z_rot[x].y, z_rot[x].z);
+		x++;
+	}	
 
 	
+//---project coordinations to iso and store as image-----------
+//---draw lines---------
 
 	
 //	frame_init(&frm);
 	frm.mlx = mlx_init();
-	frm.win = mlx_new_window(frm.mlx, 480, 300, "The VIEW");//open the window
+	frm.win = mlx_new_window(frm.mlx, WIN_W, WIN_H, "The VIEW");//open the window
 	if (!frm.win)
 		ft_printf("error.\n");
 	//image
