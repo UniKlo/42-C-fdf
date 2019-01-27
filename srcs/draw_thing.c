@@ -1,18 +1,21 @@
 #include "fdf.h"
 
-
-/*
 void    draw(t_frame *frm)
 {
-    int x = WIN_W/2;
-    int y = WIN_H/2;
-    while ((x - WIN_W/2) < 10)
-    {
-        mlx_pixel_put(frm->mlx, frm->win, x++, y, 0xFFFFFF);
-    }
-	}
-*/
+    int x = WIN_W/2;//starting point
+    int y = WIN_H/2;//starting point
+	int unit = 0;//unit line length
 
+	printf("h: %d, w: %d\n", WIN_H/(frm->row), WIN_W/(frm->col));
+	unit = WIN_H/(frm->row) >= WIN_W/(frm->col) ? WIN_W/(frm->col) : WIN_H/(frm->row);
+	printf("unit: %d\n", unit);
+	while ((x - WIN_W/2) < unit)
+        mlx_pixel_put(frm->mlx, frm->win, x++, y, 0xFFFFFF);
+	x = WIN_W/2;
+	while ((y - WIN_H/2) < unit)
+        mlx_pixel_put(frm->mlx, frm->win, x, y++, 0xFFFFFF);
+
+/*
 void    draw(t_frame *frm, int x, int y)
 {
 	mlx_pixel_put(frm->mlx, frm->win, x++, y, 0xFFFFFF);
@@ -37,5 +40,5 @@ void    draw_bresenham(int x0, int y0, int x1, int y1)
 			
 			e= e - dx2;//2*e*dx = 2*e*dx - 2*dx  (原来是 e = e -1)
 		}
-	}
+		}*/
 }

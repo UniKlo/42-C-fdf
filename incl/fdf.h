@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/01/08 23:05:36 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/26 02:06:45 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,30 @@ typedef struct		s_frame
 {
 	void		*mlx;
 	void		*win;
+	void		*img;
+	char		*data_img;
+	int			col;
+	int			row;
+	int			dot_size;
+	struct s_dot	**dots;
+	int				scale;
+	struct s_vct	*vct;
   //	t_plist		plist; //size & t_point *list
 }			t_frame;
 
-typedef struct	s_point3d
+typedef struct	s_dot
 {
 	int		x;
 	int		y;
 	int		z;
-}				t_point3d;
+}				t_dot;
 
-typedef struct	s_vect
+typedef struct	s_vct
 {
 	float		x;
 	float		y;
 	float		z;
-}				t_vect;
+}				t_vct;
 
 /*
 ** -----------------------------------------------------------------------------
@@ -62,5 +70,6 @@ typedef struct	s_vect
 */
 
 void draw(t_frame *frm);
-
+void get_digit_map(char *str, t_frame *frm);
+void    stage(t_frame *frm);
 #endif

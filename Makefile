@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/11/27 19:22:41 by khou             ###   ########.fr        #
+#    Updated: 2019/01/26 02:04:54 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,7 +22,7 @@ DIR_S = srcs/
 
 HEADER = fdf.h
 
-SOURCES = main.c\
+SOURCES = main.c    get_digit_map.c stage.c\
             draw_thing.c\
 
 
