@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/01/26 02:06:45 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/31 17:00:37 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,7 @@
 ** ------------------------- Structure Definition ------------------------------
 */
 
-typedef struct		s_frame
-{
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*data_img;
-	int			col;
-	int			row;
-	int			dot_size;
-	struct s_dot	**dots;
-	int				scale;
-	struct s_vct	*vct;
-  //	t_plist		plist; //size & t_point *list
-}			t_frame;
+
 
 typedef struct	s_dot
 {
@@ -63,6 +50,23 @@ typedef struct	s_vct
 	float		z;
 }				t_vct;
 
+typedef struct		s_frame
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*data_img;
+	int			col;
+	int			row;
+	int			dot_size;
+	t_dot		**dots;
+	int				scale;
+	t_vct	*vct;
+	t_dot	ai_pxl[2];//max, min, width, hight, need to init
+	int			pxl_size;
+  //	t_plist		plist; //size & t_point *list
+}			t_frame;
+
 /*
 ** -----------------------------------------------------------------------------
 ** -------------------------------- Sources ------------------------------------
@@ -72,4 +76,5 @@ typedef struct	s_vct
 void draw(t_frame *frm);
 void get_digit_map(char *str, t_frame *frm);
 void    stage(t_frame *frm);
+void    project(t_frame *frm);
 #endif

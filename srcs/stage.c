@@ -6,49 +6,31 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 16:41:09 by khou              #+#    #+#             */
-/*   Updated: 2019/01/26 02:54:28 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/30 13:13:22 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-
-/*
-void	x_rotation(t_frame *frm)
+void	x_rotation(t_vct *rot, t_dot *org, double ang)
 {
-	float	y;
-	float	z;
-	int i = 0;
-	int		ang = 30;
-
-	while (i < frm->dot_size)
-	{
-		y = frm->dots[i].y;
-		z = frm->dots[i].z;
-		frm->vct[i].y = y * cos(ang) + z * sin(ang);
-		frm->vct[i].z = - y * sin(ang) + z * cos(ang);
-		i++;
-	}
+	int	y = org->y;
+	int	z = org->z;
+	rot->x = org->x;
+	rot->y = y * cos(ang) + z * sin(ang);
+	rot->z = -y * sin(ang) + z * cos(ang);
 }
 
-void    y_rotation(t_frame *frm)
+void    y_rotation(t_vct *rot, t_dot *org, double ang)
 {
-	float	x;
-	float	z;
-	int i = 0;
-	int	ang = 30;
-	while (i < frm->dot_size)
-	{
-		x =frm->dots[i].x;
-		z =frm->dots[i].z;
-		frm->vct[i].x = x * cos(ang) + z * sin(ang);
-		frm->vct[i].z = -x * sin(ang) + z * cos(ang);
-		i++;
-	}
+	int x = org->x;
+	int z = org->z;
+	rot->x = x * cos(ang) + z * sin(ang);
+	rot->y = org->y;
+	rot->z = -x * sin(ang) + z * cos(ang);
 }
-*/
-void    z_rotation(t_vct *rot, t_dot *org, int ang)
+
+void    z_rotation(t_vct *rot, t_dot *org, double ang)
 {
 	int x = org->x;
 	int y = org->y;
@@ -61,6 +43,7 @@ void	stage(t_frame *frm)
 {
 	frm->vct = malloc(sizeof (t_vct) * frm->dot_size);
 	int	ang = 30; //be able to change angel
+	double radian_ang = (ang * M_PI) / 180;
 	int i = 0;
 	int k = 0;
 	while (i < frm->row)
@@ -68,14 +51,12 @@ void	stage(t_frame *frm)
 		int j = 0;
 		while (j < frm->col)
 		{
-//			x_rotation(vct[k], frm->dots[i][j], ang);
-//			y_rotation(vct[k], frm->dots[i][j], ang);
-			z_rotation(&frm->vct[k], &frm->dots[i][j], ang);
-			
+			x_rotation(&frm->vct[k], &frm->dots[i][j], radian_ang);
+			y_rotation(&frm->vct[k], &frm->dots[i][j], radian_ang);
+			z_rotation(&frm->vct[k], &frm->dots[i][j], radian_ang);			
 			j++;
 			k++;
 		}
 		i++;
 	}
-	project(frm, {);
 }
