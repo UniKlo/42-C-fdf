@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/01 18:12:26 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/01 19:04:22 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	apply_scale(t_frame *frm, int i, int j)
 
 void	scale(t_frame *frm)
 {
-	int unit_row = WIN_H*0.8/(frm->row);
-	int	unit_col = WIN_W*0.8/(frm->col);
+	int unit_row = WIN_H*0.6/(frm->row);
+	int	unit_col = WIN_W*0.6/(frm->col);
 	frm->scale = unit_row <= unit_col ? unit_row : unit_col; 
 	printf("scale: %d\n", frm->scale);
 	int i = 0;

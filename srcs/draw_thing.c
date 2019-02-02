@@ -10,10 +10,10 @@ void    draw(t_frame *frm)
 	unit = WIN_H/(frm->row) >= WIN_W/(frm->col) ? WIN_W/(frm->col) : WIN_H/(frm->row);
 	printf("unit: %d\n", unit);
 	while ((x - WIN_W/2) < unit)
-        mlx_pixel_put(frm->mlx, frm->win, x++, y, 0xFFFFFF);
-	x = WIN_W/2;
-	while ((y - WIN_H/2) < unit)
-        mlx_pixel_put(frm->mlx, frm->win, x, y++, 0xFFFFFF);
+        mlx_pixel_put(frm->mlx, frm->win, x++, y++, 0xFFFFFF);
+//	x = WIN_W/2;
+//	while ((y - WIN_H/2) < unit)
+//        mlx_pixel_put(frm->mlx, frm->win, x, y++, 0xFFFFFF);
 
 /*
 void    draw(t_frame *frm, int x, int y)
