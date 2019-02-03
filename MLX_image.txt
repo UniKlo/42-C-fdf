@@ -1,0 +1,57 @@
+********************************************************************************
+                                                                                
+                                                          :::      ::::::::     
+     MLX_image.txt                                      :+:      :+:    :+:     
+                                                      +:+ +:+         +:+       
+     By: khou <marvin@42.fr>                        +#+  +:+       +#+          
+                                                  +#+#+#+#+#+   +#+             
+     Created: 2019/01/19 17:26:02 by khou              #+#    #+#               
+     Updated: 2019/01/20 18:14:23 by khou             ###   ########.fr         
+                                                                                
+********************************************************************************
+
+Many people came to me for explanations about the MinilibX images.
+
+So I would like to write a mini-manual here so that you can start more easily.
+
+MLX images
+1) What is it for?
+If you saw the video correctly (otherwise go right away!) you saw that you could print a pixel on the screen using the mlx_put_pixel function. Great. So why bother using anything else?
+
+And well simply for performance stories. When you run a program that prints hundreds of printfs in the console, you may have noticed that it slows down the program enormously. Printing all the pixels one by one is a bit the same.
+
+Solution: "Print" all the pixels in the memory and then print everything on the screen at once, and that's where the images are used for something. The MLX image is simply the thing that contains all your pixels in memory.
+
+The use of images is not mandatory for a simple FdF, but from Fractol you are asked for a display that changes in real time and you will therefore necessarily have to use the images.
+
+2) How does it work?
+The MLX images are like strings. 1 image = 1 string, more or less.
+
+A string is a continuous string of char for which we have the address of the first one and which by convention does not contain a "\0" except to indicate the end.
+
+The image of the mlx is simply a continuous series of char for which we know the address of the first one. It just so happens that you can calculate the size with size_line and the number of lines used when creating the image. But there is nothing beyond that size (except maybe the segfault). There is no special char to indicate the end. And you can have a lot of '\0' in the pixels of your image.
+
+Each pixel of your image is placed in the "string", starting with the pixel (0, 0) at the top left, then to the right, then to the bottom. Each pixel is described by 4 chars.
+
+Example for a resolution of 800x600: You have 800x600 = 480 000 pixels.
+Your string will therefore be 1,920,000 characters long (+ the final \0).
+
+Step 3: Fill in the image
+
+I'm not telling you how to do everything here, I'll let you look for it a little bit ^_^ but what I'm consoling you is to create a function like:
+
+void fill_pixel(char *my_image_string, int x, int y, int color);
+Which will "put" the color on the pixel at the x and y positions. I've already explained the calculations above for that.
+
+Step 4: Display the image
+
+mlx_put_image_to_window(data, pointer_window, pointer_image, 0, 0);
+the last two int are the position where you want to put your image in your window, in general you will want to leave it at 0, 0.
+
+"Data" is your environment structure (if you don't know what it is: basically it's a structure where you put your useful variables, like the minilibX pointers for example, which is essential in graphic projects to have everything at hand). I'm no longer sure if the function uses the MLX pointer or Window pointer you'll have in your data structure, so I'll let you check this detail if you want. This is probably the MLX pointer since the window pointer is sent after.
+
+How to get animations?
+
+In your event loop, make sure you completely redraw your image after changing your settings, then redisplay the image with mlx_put_image_to_window. If you want to be clean, destroy the front image with mlx_destroy_image.
+
+That's it, you have everything you need to start quietly integrating images into your graphic projects. 

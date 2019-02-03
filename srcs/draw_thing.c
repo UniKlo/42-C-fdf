@@ -19,16 +19,32 @@ void	plot(char *data_img, int x, int y, int a)//a need to carry more info about 
 }
 */
 
+void	swap(int *a, int *b)
+{
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
 void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)
 {
-	int		dx = x1 - x2;
-	int		dy = y1 - y2;
 	printf("abs: %d\n", abs(dx));
-	int steep = abs(dy) > abs(dx) ? 1 : 0;
+	int steep = abs(y1 - y2) > abs(x1 - x2) ? 1 : 0;
 	printf("steep: %d\n", steep);
 	if (steep)
 	{
+		swap(&x1, &y1);
+		swap(&x2, &y2);
 	}
+	printf("x1: %d, y1: %d\n", x1, y1);
+	if ((x1 - x2) < 0)
+	{
+		swap(&x1, &x2);
+		swap(&y1, &y2);
+	}
+	int		dx = x1 - x2;
+	int		dy = y1 - y2;
+	if (dx == 0)
 	/*
 	if (fabs(dx) > fabs(dy))
 		;
