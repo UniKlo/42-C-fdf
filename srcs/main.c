@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/01 19:08:57 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/01 20:20:19 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
 		ft_printf("error.\n");
 	//image
 	frm.img = mlx_new_image(frm.mlx, WIN_W, WIN_H);
-//	frm.data_img = mlx_get_data_addr(frm.img, 32, WIN_W * 4, &endian);
+	frm.data_img = mlx_get_data_addr(frm.img, 32, WIN_W * 4, 1);//big_endian
 	//draw something
 	draw(&frm);
 	mlx_key_hook(frm.win, deal_key, (void *)0);

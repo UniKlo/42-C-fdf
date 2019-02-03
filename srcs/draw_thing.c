@@ -1,5 +1,98 @@
+
+
 #include "fdf.h"
 
+/*
+void	plot(char *data_img, int x, int y, int a)//a need to carry more info about color
+{
+	char *color = data_img[x + 4* WIN_W * y];
+	int red = 255;
+	int blue = 255;
+	int green = 255;
+	int alpha = 255;
+
+	*color++ = red;
+	*color++ = blue;
+	*color++ = green;
+	*color = alpha;
+	
+}
+*/
+
+void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)
+{
+	int		dx = x1 - x2;
+	int		dy = y1 - y2;
+	printf("abs: %d\n", abs(dx));
+	int steep = abs(dy) > abs(dx) ? 1 : 0;
+	printf("steep: %d\n", steep);
+	if (steep)
+	{
+	}
+	/*
+	if (fabs(dx) > fabs(dy))
+		;
+	else
+	steep;
+*/
+	
+}
+
+int	main()
+{
+	draw_line(NULL, 10, 30, 800, 900);
+	return (0);
+}
+/*
+void	fill_img(t_frame *frm, int i, int j)
+{
+	int	x1 = 0;
+	int y1 = 0;
+	int x2 = 0;
+	int y2 = 0;
+
+	x1 = frm->dots[i][j].x;
+	y1 = frm->dots[i][j].y;
+	if ((i + 1) >= frm->col || (j + 1) >= frm->row)
+		 return ;
+	if ((j+1) < frm->col)
+	{
+		x2 = frm->dots[i][j+1].x;
+		y2 = frm->dots[i][j+1].y;
+		draw_line(frm, x1, y1, x2, y2);
+	}
+	if ((i+1) < frm->col)
+	{
+		x2 = frm->dots[i+1][j].x;
+		y2 = frm->dots[i+1][j].y;
+		draw_line(frm, x1, y1, x2, y2);
+	}
+	fill_img(frm, i + 1, j);
+	fill_img(frm, i, j + 1);
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void    draw(t_frame *frm)
 {
     int x = WIN_W/2;//starting point
@@ -15,7 +108,6 @@ void    draw(t_frame *frm)
 //	while ((y - WIN_H/2) < unit)
 //        mlx_pixel_put(frm->mlx, frm->win, x, y++, 0xFFFFFF);
 
-/*
 void    draw(t_frame *frm, int x, int y)
 {
 	mlx_pixel_put(frm->mlx, frm->win, x++, y, 0xFFFFFF);
@@ -40,5 +132,6 @@ void    draw_bresenham(int x0, int y0, int x1, int y1)
 			
 			e= e - dx2;//2*e*dx = 2*e*dx - 2*dx  (原来是 e = e -1)
 		}
-		}*/
+		}
 }
+*/
