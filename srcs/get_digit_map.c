@@ -1,4 +1,4 @@
-/*A ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_digit_map.c                                    :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/01 19:04:22 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/08 15:45:04 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void	recenter(t_frame *frm)
 void	apply_scale(t_frame *frm, int i, int j)
 {
 
-	if (i >= frm->col || j >= frm->row)
+	if (i >= frm->row || j >= frm->col)
 		 return ;
 //	printf("i: %d, j: %d\n", i ,j);
 	frm->dots[i][j].x = j * frm->scale;
 	frm->dots[i][j].y = i * frm->scale;
+//	frm->dots[i][j].z = frm->dots[i][j].z * frm->scale;
 	apply_scale(frm, i + 1, j);
 	apply_scale(frm, i, j + 1);
 }

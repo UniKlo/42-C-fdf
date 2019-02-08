@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/07 20:33:36 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/08 00:30:05 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,17 @@ int main(int argc, char **argv)
 	if (!frm.win)
 		ft_printf("error.\n");
 	//image
+	/*
 	frm.img = mlx_new_image(frm.mlx, WIN_W, WIN_H);
-//	frm.data_img = mlx_get_data_addr(frm.img, 32, WIN_W * 4, 1);//big_endian
+	int bpp = 32;
+	int size_line = WIN_W * 4;
+	int endian = 1;
+	frm.data_img = mlx_get_data_addr(frm.img, &bpp, &size_line, &endian);//big_endian
+	*/
 //---draw something------------
 	draw_img(&frm);//test version, draw from dots
 //	draw_line(&frm, 400, 600, 800, 1200);
-
+//	mlx_put_image_to_window(frm.mlx, frm.win, frm.img, 0, 0);
 
 //---key hook---------	
 	mlx_key_hook(frm.win, deal_key, (void *)0);

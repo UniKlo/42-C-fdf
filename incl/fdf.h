@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/07 19:13:45 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/08 00:36:27 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ typedef struct		s_frame
 
 void draw(t_frame *frm);
 void get_digit_map(char *str, t_frame *frm);
+void    recenter(t_frame *frm);
 void    stage(t_frame *frm);
 void    project(t_frame *frm);
-void    draw_line(t_frame *frm, int x1, int y1, int x2, int y2);
+//void    draw_line(t_frame *frm, int x1, int y1, int x2, int y2);
+void    draw_img(t_frame *frm);
 #endif
