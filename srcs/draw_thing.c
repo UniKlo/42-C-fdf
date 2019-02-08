@@ -124,6 +124,11 @@ void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)//change them all to
 	}
 		
 }
+
+void	draw_img(t_frame *frm)
+{
+}
+
 /*
 void	fill_img(t_frame *frm, int i, int j)
 {
