@@ -1,9 +1,8 @@
 
 
 #include "fdf.h"
-
-/*
-void	plot(char *data_img, int x, int y, int a)//a need to carry more info about color
+/*image version
+void	plot(char *data_img, int x, int y, float a)//a need to carry more info about color
 {
 	char *color = data_img[x + 4* WIN_W * y];
 	int red = 255;
@@ -14,10 +13,27 @@ void	plot(char *data_img, int x, int y, int a)//a need to carry more info about 
 	*color++ = red;
 	*color++ = blue;
 	*color++ = green;
-	*color = alpha;
+	*color = alpha * a;
 	
 }
 */
+
+//easy version
+void    plot(t_frame *frm, int x, int y, float a)
+{
+	int color = 0; //the order is confusing, why it is not white
+	int red = 255;
+    int blue = 255;
+    int green = 255;
+    int alpha = 255 * a;
+
+	color += alpha << 24;
+	color += red << 16;
+	color += green << 8;
+	color += blue;
+	
+	mlx_pixel_put(frm->mlx, frm->win, x, y, color);
+}
 
 void	swap(int *a, int *b)
 {
@@ -26,9 +42,22 @@ void	swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)
+int		int_part(float nbr)
 {
-	printf("abs: %d\n", abs(dx));
+	return (floor(nbr));
+}
+
+float	frc_part(float nbr)
+{
+	return (ceil(nbr) - nbr);
+}
+
+float	rst_frc_part(float nbr)
+{
+	return (1 - frc_part(nbr));
+}
+void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)//change them all to float. projection points could be float.
+{
 	int steep = abs(y1 - y2) > abs(x1 - x2) ? 1 : 0;
 	printf("steep: %d\n", steep);
 	if (steep)
@@ -37,27 +66,63 @@ void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)
 		swap(&x2, &y2);
 	}
 	printf("x1: %d, y1: %d\n", x1, y1);
-	if ((x1 - x2) < 0)
+	if (x2 < x1)
 	{
 		swap(&x1, &x2);
 		swap(&y1, &y2);
 	}
-	int		dx = x1 - x2;
-	int		dy = y1 - y2;
+	float	dx = x2 - x1;
+	float	dy = y2 - y1;
+	float	slope;
 	if (dx == 0)
-	/*
-	if (fabs(dx) > fabs(dy))
-		;
-	else
-	steep;
-*/
-	
-}
+		slope = 1;
+	slope = dy / dx;
 
-int	main()
-{
-	draw_line(NULL, 10, 30, 800, 900);
-	return (0);
+//	int	xend = round(x1);
+//	int yend = y1 + slope * (x1 - xend);
+	int		xpxl1 = x1;
+	int		xpxl2 = x2;
+	float	y = y1;
+
+	int		x = xpxl1;
+	 
+	if (steep)
+	{
+		while (x <= xpxl2)
+		{
+			if (slope > 0)
+			{
+				plot(frm, int_part(y), x, rst_frc_part(y));
+				plot(frm, int_part(y) +1, x, frc_part(y));
+			}
+			else if (slope <= 0)
+			{
+				plot(frm, int_part(y), x, rst_frc_part(y));
+				plot(frm, int_part(y) -1, x, frc_part(y));
+			}
+			y += slope;
+			x++;
+		}
+	}
+	else
+	{
+		while (x <= xpxl2)
+		{
+			if (slope > 0)
+			{
+				plot(frm, x, int_part(y), rst_frc_part(y));
+				plot(frm, x, int_part(y) +1, frc_part(y));
+			}
+			else if (slope <= 0)
+			{
+				plot(frm, x, int_part(y), rst_frc_part(y));
+				plot(frm, x, int_part(y) -1, frc_part(y));
+			}
+			y += slope;
+			x++;
+		}
+	}
+		
 }
 /*
 void	fill_img(t_frame *frm, int i, int j)
@@ -85,69 +150,5 @@ void	fill_img(t_frame *frm, int i, int j)
 	}
 	fill_img(frm, i + 1, j);
 	fill_img(frm, i, j + 1);
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void    draw(t_frame *frm)
-{
-    int x = WIN_W/2;//starting point
-    int y = WIN_H/2;//starting point
-	int unit = 0;//unit line length
-
-	printf("h: %d, w: %d\n", WIN_H/(frm->row), WIN_W/(frm->col));
-	unit = WIN_H/(frm->row) >= WIN_W/(frm->col) ? WIN_W/(frm->col) : WIN_H/(frm->row);
-	printf("unit: %d\n", unit);
-	while ((x - WIN_W/2) < unit)
-        mlx_pixel_put(frm->mlx, frm->win, x++, y++, 0xFFFFFF);
-//	x = WIN_W/2;
-//	while ((y - WIN_H/2) < unit)
-//        mlx_pixel_put(frm->mlx, frm->win, x, y++, 0xFFFFFF);
-
-void    draw(t_frame *frm, int x, int y)
-{
-	mlx_pixel_put(frm->mlx, frm->win, x++, y, 0xFFFFFF);
-}
-
-void    draw_bresenham(int x0, int y0, int x1, int y1)
-{
-	int dx = x1 - x0;
-	int dy = y1 - y0;
-	int dx2 = dx <<1;//x偏移量乘2
-	int dy2 = dy <<1;//y偏移量乘2
-	int e = -dx; //e = -0.5 * 2 * dx,把e 用2 * dx* e替换
-	int x = x0；//起点x坐标
-	int y = y0;//起点y坐标
-	for (x = x0; x < x1;x++)
-	{
-		printf ("%d,%d\n",x, y);
-		e=e + dy2;//来自 2*e*dx= 2*e*dx + 2dy  （原来是 e = e + k）
-		if (e > 0)//e是整数且大于0时表示要取右上的点（否则是右下的点） 
-		{ 
-		 	y++;
-			
-			e= e - dx2;//2*e*dx = 2*e*dx - 2*dx  (原来是 e = e -1)
-		}
-		}
 }
 */
