@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/08 00:36:27 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/08 20:36:11 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,6 @@
 ** ------------------------- Structure Definition ------------------------------
 */
 
-
-
-typedef struct	s_dot
-{
-	int		x;
-	int		y;
-	int		z;
-}				t_dot;
-
 typedef struct	s_vct
 {
 	float		x;
@@ -59,10 +50,9 @@ typedef struct		s_frame
 	int			col;
 	int			row;
 	int			dot_size;
-	t_dot		**dots;
 	int				scale;
-	t_vct	*vct;
-	t_dot	ai_pxl[2];//max, min, width, hight, need to init
+	t_vct	**vct;
+	t_vct	ai_pxl[2];//max, min, width, hight, need to init
 	int			pxl_size;
   //	t_plist		plist; //size & t_point *list
 }			t_frame;
@@ -78,6 +68,5 @@ void get_digit_map(char *str, t_frame *frm);
 void    recenter(t_frame *frm);
 void    stage(t_frame *frm);
 void    project(t_frame *frm);
-//void    draw_line(t_frame *frm, int x1, int y1, int x2, int y2);
 void    draw_img(t_frame *frm);
 #endif

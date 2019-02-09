@@ -5,7 +5,7 @@
 //image version
 void	plot(char *data_img, int x, int y, float a)//a need to carry more info about color
 {
-	char *color = &data_img[x + 4* WIN_W * y];
+	char *color = &data_img[x * 2 + 4* WIN_W * y];
 	int alpha = 255 * a;	
 	int red = 255;
 	int green = 255;
@@ -19,7 +19,6 @@ void	plot(char *data_img, int x, int y, float a)//a need to carry more info abou
 */
 
 //easy version
-
 void    plot(t_frame *frm, int x, int y, float a)
 {
 	int color = 0;
@@ -89,10 +88,6 @@ void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)//change them all to
 	{
 		while (x <= xpxl2)
 		{
-			plot(frm, int_part(y), x, rst_frc_part(y));
-			plot(frm, int_part(y) + 1, x, frc_part(y)); //does it matter +-??
-			//in relate to slope sign
-/*
 			if (slope > 0)
 			{
 //				plot(frm->data_img, int_part(y), x, rst_frc_part(y));
@@ -107,7 +102,6 @@ void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)//change them all to
 				plot(frm, int_part(y), x, rst_frc_part(y));
 				plot(frm, int_part(y) -1, x, frc_part(y));
 			}
-*/
 			y += slope;
 			x++;
 		}
@@ -116,9 +110,6 @@ void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)//change them all to
 	{
 		while (x <= xpxl2)
 		{
-			plot(frm, x, int_part(y), rst_frc_part(y));
-			plot(frm, x, int_part(y) + 1, frc_part(y));
-/*
 			if (slope > 0)
 			{
 //				plot(frm->data_img, x, int_part(y), rst_frc_part(y));
@@ -133,7 +124,6 @@ void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)//change them all to
 				plot(frm, x, int_part(y), rst_frc_part(y));
 				plot(frm, x, int_part(y) -1, frc_part(y));
 			}
-*/
 			y += slope;
 			x++;
 		}
@@ -152,11 +142,11 @@ void	draw_img(t_frame *frm)
 		while (j < frm->col)
 		{
 			if (i < frm->row - 1)
-				draw_line(frm, frm->dots[i][j].x, frm->dots[i][j].y,
-						  frm->dots[i+1][j].x, frm->dots[i+1][j].y);
+				draw_line(frm, frm->vct[i][j].x, frm->vct[i][j].y,
+						  frm->vct[i+1][j].x, frm->vct[i+1][j].y);
 			if (j < frm->col - 1)
-				draw_line(frm, frm->dots[i][j].x, frm->dots[i][j].y,
-						  frm->dots[i][j+1].x, frm->dots[i][j + 1].y);
+				draw_line(frm, frm->vct[i][j].x, frm->vct[i][j].y,
+						  frm->vct[i][j+1].x, frm->vct[i][j + 1].y);
 			j++;
 		}
 		i++;

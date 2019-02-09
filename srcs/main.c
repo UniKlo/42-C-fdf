@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/08 00:30:05 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/08 20:52:15 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,32 @@ void	frame_init(t_frame *frm)
 	frm->ai_pxl[0].y = 0;
 	frm->ai_pxl[1].x = 0;
 	frm->ai_pxl[1].y = 0;
+}
+
+void	init(char *str)
+{
+	while (*str)
+		*str++ = '0';
+}
+
+void	free_vct(t_frame *frm)
+{
+	int i = 0;
+	int j;
+	while (i< frm->row)
+	{
+		j = 0;
+		while(j < frm->col)
+		{
+			free(&frm->vct[i][j]);
+//				 .x);
+//			frm->vct[i][j].y;
+//			frm->vct[i][j].z;
+			j++;
+		}
+		i++;
+		
+	}
 }
 
 int main(int argc, char **argv)
@@ -75,43 +101,49 @@ int main(int argc, char **argv)
 	*/
 //---project coordinations to iso measure image size-----------
 	project(&frm);
-
+/*
 	int i = 0;
 	while (i < frm.row)
 	{
 		int j = 0;
 		while (j < frm.col)
 		{
-			printf("x: %d, y: %d, z: %d ",				\
-				   frm.dots[i][j].x, frm.dots[i][j].y, frm.dots[i][j].z);
+			printf("x: %f, y: %f, z: %f ",				\
+				   frm.vct[i][j].x, frm.vct[i][j].y, frm.vct[i][j].z);
 			j++;
 		}
 		printf("\n");
 		i++;
 	}
-	
+*/	
 //---find out each points in lines and put it in img---------
 
 	frm.mlx = mlx_init();
 	frm.win = mlx_new_window(frm.mlx, WIN_W, WIN_H, "The VIEW");//open the window
 	if (!frm.win)
 		ft_printf("error.\n");
-	//image
-	/*
+
+//---image------
+/*
+	frm.img = malloc(sizeof(char) * 4 * WIN_W * WIN_H);
+	init(frm.img);
 	frm.img = mlx_new_image(frm.mlx, WIN_W, WIN_H);
 	int bpp = 32;
 	int size_line = WIN_W * 4;
 	int endian = 1;
 	frm.data_img = mlx_get_data_addr(frm.img, &bpp, &size_line, &endian);//big_endian
-	*/
+*/	
 //---draw something------------
-	draw_img(&frm);//test version, draw from dots
-//	draw_line(&frm, 400, 600, 800, 1200);
+	draw_img(&frm);//test version, draw from image or put dots
 //	mlx_put_image_to_window(frm.mlx, frm.win, frm.img, 0, 0);
+//clear_img
 
+	
 //---key hook---------	
 	mlx_key_hook(frm.win, deal_key, (void *)0);
 //	mlx_hook(win, x_event, x_mask, (*funct)(), (void *)0);
 	mlx_loop(frm.mlx);
+	free_vct(&frm);
+
 	return (0);
 }

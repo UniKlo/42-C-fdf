@@ -6,14 +6,14 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 00:33:32 by khou              #+#    #+#             */
-/*   Updated: 2019/02/08 00:36:00 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/08 19:55:37 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /*
-void	pixel_size(int *pxl_size,t_dot *ai_pxl)
+void	pixel_size(int *pxl_size,t_vct *ai_pxl)
 {
 	int pxl_width = ai_pxl[0].x - ai_pxl[1].x;
 	int	pxl_hight = ai_pxl[0].y - ai_pxl[1].y;
@@ -24,7 +24,7 @@ void	pixel_size(int *pxl_size,t_dot *ai_pxl)
 	printf("pxl_size: %d\n", *pxl_size);
 }
 
-void	pixel_measure(t_dot *ai_pxl, t_dot *pjt)
+void	pixel_measure(t_vct *ai_pxl, t_vct *pjt)
 {
 	
 	if (pjt->x >= 0 && pjt->x > ai_pxl[0].x)
@@ -38,13 +38,16 @@ void	pixel_measure(t_dot *ai_pxl, t_dot *pjt)
 }
 */
 
-void	pjt_true_iso(t_dot *pjt, t_vct *org)//turn dots to pjt
+void	pjt_true_iso(t_vct *pjt)//turn vct to pjt
 {
 	int iso_ang = 30;
 	double radian_ang =	(iso_ang * M_PI) / 180;
 //	printf("iso:%f\n", radian_ang);
-	pjt->x = (org->x - org->y) * cos(radian_ang);
-	pjt->y = (org->x + org->y) * sin(radian_ang) - org->z;
+	float	x = pjt->x;
+	float	y = pjt->y;
+	float	z = pjt->z;
+	pjt->x = (x - y) * cos(radian_ang);
+	pjt->y = (x + y) * sin(radian_ang) - z;
 	pjt->z = 0;
 }
 
@@ -52,13 +55,12 @@ void	pjt_true_iso(t_dot *pjt, t_vct *org)//turn dots to pjt
 void	project(t_frame *frm)
 {
 	int i = 0;
-	int k = 0;
 	while (i < frm->row)
 	{
 		int j = 0;
 		while (j < frm->col)
 		{
-			pjt_true_iso(&frm->dots[i][j], &frm->vct[k++]);
+			pjt_true_iso(&frm->vct[i][j]);
 			j++;
 //			pixel_measure(frm->ai_pxl, &frm->dots[i][j++]);
 		}
