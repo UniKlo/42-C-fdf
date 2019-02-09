@@ -5,7 +5,7 @@
 //image version
 void	plot(char *data_img, int x, int y, float a)//a need to carry more info about color
 {
-	char *color = &data_img[x * 2 + 4* WIN_W * y];
+	char *color = &data_img[(x + WIN_W * y) * 4];
 	int alpha = 255 * a;	
 	int red = 255;
 	int green = 255;
@@ -35,7 +35,7 @@ void    plot(t_frame *frm, int x, int y, float a)
 	mlx_pixel_put(frm->mlx, frm->win, x, y, color);
 }
 
-void	swap(int *a, int *b)
+void	swap(float *a, float *b)
 {
 	int tmp = *a;
 	*a = *b;
@@ -56,9 +56,9 @@ float	rst_frc_part(float nbr)
 {
 	return (1 - frc_part(nbr));
 }
-void	draw_line(t_frame *frm, int x1, int y1, int x2, int y2)//change them all to float. projection points could be float.
+void	draw_line(t_frame *frm, float x1, float y1, float x2, float y2)//change them all to float. projection points could be float.
 {
-	int steep = abs(y1 - y2) > abs(x1 - x2) ? 1 : 0;
+	int steep = fabs(y1 - y2) > abs(x1 - x2) ? 1 : 0;
 	if (steep)
 	{
 		swap(&x1, &y1);

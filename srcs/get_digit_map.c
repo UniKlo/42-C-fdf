@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/08 20:41:26 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/09 01:29:20 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	get_coordinates(char *str, t_frame *frm)
 		perror("Error");//?
 		exit (1);
 	}
+	printf("fd: %d\n", fd);
     char	*line = NULL;
 
 	int i = 0;//index of the array of struct
