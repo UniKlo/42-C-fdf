@@ -58,7 +58,7 @@ float	rst_frc_part(float nbr)
 }
 void	draw_line(t_frame *frm, float x1, float y1, float x2, float y2)//change them all to float. projection points could be float.
 {
-	int steep = fabs(y1 - y2) > abs(x1 - x2) ? 1 : 0;
+	int steep = fabs(y1 - y2) > fabs(x1 - x2) ? 1 : 0;
 	if (steep)
 	{
 		swap(&x1, &y1);

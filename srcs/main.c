@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/08 20:52:15 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/10 01:05:33 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ void	free_vct(t_frame *frm)
 	}
 }
 
+void	endwith(char *str, char *word)
+{
+	int l_str = ft_strlen(str);
+	int l_wrd = ft_strlen(word);
+	while (word[l_wrd-1] == str[l_str-1])
+	{
+		l_wrd--;
+		l_str--;
+	}
+	if (l_wrd != 0)
+	{
+		ft_printf("Error: Not a %s file\n", word);
+		exit(0);
+	}
+}
+
 int main(int argc, char **argv)
 {
 	
@@ -69,7 +85,11 @@ int main(int argc, char **argv)
 	frame_init(&frm);
 
 	if (argc != 2)
+	{
+		ft_printf("usage: ./fdf [arg]\n");
 		exit (1);
+	}
+	endwith(argv[1], ".fdf");
 	get_digit_map(argv[1], &frm);
 /*
 //---print out Orignal coordinations-----------
