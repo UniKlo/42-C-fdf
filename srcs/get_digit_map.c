@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/09 01:29:20 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 12:46:52 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,30 @@
 
 void	recenter(t_frame *frm)
 {
-	int x0 = frm->row/2;
-    int y0 = frm->col/2;
-	float dx = WIN_W/2 - frm->vct[x0][y0].x;
-	float dy = WIN_H/2 - frm->vct[x0][y0].y;
+	int y0 = frm->row/2;
+    int x0 = frm->col/2;
+	frm->center[0].x = WIN_W/2 - frm->vct[y0][x0].x;
+	frm->center[0].y = WIN_H/2 - frm->vct[y0][x0].y;
+//	frm->center.z = 0.8;
 	int i = 0;
 	while (i < frm->row)
 	{
 		int j = 0;
 		while (j < frm->col)
 		{
-			frm->vct[i][j].x += dx;
-			frm->vct[i][j].y += dy;
+			frm->vct[i][j].x += frm->center[0].x + frm->center[1].x;
+			frm->vct[i][j].y += frm->center[0].y + frm->center[1].y;
+			//* frm->center.z;
 			j++;
 		}
 		i++;
 	}
-}
-
-void	apply_scale(t_frame *frm)
-{
-	int i = 0;
-	int j;
-	i = 0;
-	while (i < frm->row)
-	{
-		j = 0;
-		while (j < frm->col)
-		{
-			frm->vct[i][j].x = j * frm->scale;
-			frm->vct[i][j].y = i * frm->scale;
-			frm->vct[i][j].z = frm->vct[i][j].z * frm->scale/5;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	scale(t_frame *frm)
-{
-	int unit_row = WIN_H*0.6/(frm->row);
-	int	unit_col = WIN_W*0.6/(frm->col);
-	frm->scale = unit_row <= unit_col ? unit_row : unit_col; 
-	printf("scale: %d, deepth: 1/5\n", frm->scale);
-	apply_scale(frm);
 }
 
 void	get_coordinates(char *str, t_frame *frm)
 {
 	int fd;
-	if ((fd = open(str, O_RDONLY)) == -1)
-	{
-		perror("Error");//?
-		exit (1);
-	}
-	printf("fd: %d\n", fd);
+	fd = open(str, O_RDONLY);
     char	*line = NULL;
 
 	int i = 0;//index of the array of struct
@@ -76,8 +45,6 @@ void	get_coordinates(char *str, t_frame *frm)
 	int z;
 	
 	frm->vct = malloc(sizeof(t_vct *) * frm->row);
-	if ((fd = open(str, O_RDONLY)) == -1)
-        exit (1);
 	while (get_next_line(fd, &line))
 	{
 		frm->vct[i] =  malloc(sizeof(t_vct) * frm->col);
@@ -92,16 +59,15 @@ void	get_coordinates(char *str, t_frame *frm)
 		i++;
 	}
 	close(fd);
-	scale(frm);
 }
 
-void get_digit_map(char *str, t_frame *frm)
+void get_map_size(char *str, t_frame *frm)
 {
 	int fd;
 	if ((fd = open(str, O_RDONLY)) == -1)
 	{
 		perror("Error");//?
-		exit (1);
+		exit (0);
 	}
     char	*line = NULL;
     int		row_size = 0;
@@ -119,6 +85,11 @@ void get_digit_map(char *str, t_frame *frm)
 	frm->row = row_size;
 	frm->dot_size = row_size * column_size; 
 	printf("nbr of row: %d, nbr of column: %d\n", row_size, column_size);
+}
+
+void	get_digit_map(char *str, t_frame *frm)
+{
+	get_map_size(str, frm);
 	get_coordinates(str, frm);
-//	recenter(frm); can do recenter in projection only, here for mid point check
+	stage(frm);
 }

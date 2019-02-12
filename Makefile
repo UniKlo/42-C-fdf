@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2019/02/01 19:25:59 by khou             ###   ########.fr        #
+#    Updated: 2019/02/12 13:36:38 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ C = clang
 
 NAME = fdf
 
-FLAGS = -Wall -Wextra -Werror # -fsanitize=address #-g
+FLAGS = -g -Wall -Wextra -Werror # -fsanitize=address #-g
 
 DIR_H = incl/
 
@@ -22,7 +22,7 @@ DIR_S = srcs/
 
 HEADER = fdf.h
 
-SOURCES = main.c    get_digit_map.c 3d_rotate.c  project.c\
+SOURCES = main.c    get_digit_map.c stage.c scale.c  3d_rotate.c  project.c\
             draw_thing.c\
 
 

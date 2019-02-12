@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 00:33:32 by khou              #+#    #+#             */
-/*   Updated: 2019/02/08 19:55:37 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/10 20:45:26 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ void	project(t_frame *frm)
 		i++;
 	}
 //	pixel_size(&frm->pxl_size, frm->ai_pxl);
-	recenter(frm);
+//	recenter(frm);
 }

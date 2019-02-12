@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/08 20:36:11 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 10:43:11 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,44 @@
 ** ----------------------------- Definition ------------------------------------
 */
 
-# define KEY_ESC 53
 # define WIN_W 1920
 # define WIN_H 1080
+
+/*
+** Keyboard keys
+*/
+
+# define ESC_KEY 53
+
+/*
+** Letters keys
+*/
+
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+# define W_KEY 13
+
+/*
+** Arrow keys
+*/
+
+# define UP_KEY 126
+# define DOWN_KEY 125
+# define RIGHT_KEY 124
+# define LEFT_KEY 123
+
+/*
+** Mouse button keycodes
+*/
+
+# define BUT1_KEY 1
+# define BUT2_KEY 2
+# define BUT3_KEY 3
+# define SCROLLUP_KEY 4
+# define SCROLLDOWN_KEY 5
+# define SCROLLLEFT_KEY 6
+# define SCROLLRIGHT_KEY 7
 
 /*
 ** ------------------------- Structure Definition ------------------------------
@@ -53,6 +88,7 @@ typedef struct		s_frame
 	int				scale;
 	t_vct	**vct;
 	t_vct	ai_pxl[2];//max, min, width, hight, need to init
+	t_vct	center[2];
 	int			pxl_size;
   //	t_plist		plist; //size & t_point *list
 }			t_frame;
@@ -63,10 +99,11 @@ typedef struct		s_frame
 ** -----------------------------------------------------------------------------
 */
 
-void draw(t_frame *frm);
-void get_digit_map(char *str, t_frame *frm);
+void	get_digit_map(char *str, t_frame *frm);
+void	stage(t_frame *frm);
+void	scale(t_frame *frm);
 void    recenter(t_frame *frm);
-void    stage(t_frame *frm);
+void    rotate(t_frame *frm);
 void    project(t_frame *frm);
 void    draw_img(t_frame *frm);
 #endif
