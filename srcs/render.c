@@ -6,13 +6,13 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:34:30 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 13:38:34 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 14:25:53 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	stage(t_frame *frm)
+void	render(t_frame *frm)
 {
 	scale(frm);
 	rotate(frm);

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 10:43:11 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 14:38:11 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ typedef struct		s_frame
 */
 
 void	get_digit_map(char *str, t_frame *frm);
-void	stage(t_frame *frm);
+void	render(t_frame *frm);
 void	scale(t_frame *frm);
-void    recenter(t_frame *frm);
-void    rotate(t_frame *frm);
-void    project(t_frame *frm);
+void	recenter(t_frame *frm);
+void	rotate(t_frame *frm);
+void	project(t_frame *frm);
+void	recenter(t_frame *frm);
 void    draw_img(t_frame *frm);
 #endif

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 13:48:57 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 14:24:42 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	frame_init(t_frame *frm)
 	frm->center[0].z = 0;
 	frm->center[1].x = 0;// move right < 1, move left > 1
 	frm->center[1].y = 0;// move up < 1, move down > 1
-	frm->center[1].z = 0.2;//deepth 
+	frm->center[1].z = 0;//deepth 
 }
 
 void	free_vct(t_frame *frm)

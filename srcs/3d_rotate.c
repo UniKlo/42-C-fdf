@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:24:56 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 14:05:22 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 14:22:33 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	rotate(t_frame *frm)
 {
 	int	ang = 30; //be able to change angel
 	double radian_ang = (ang * M_PI) / 180;
-//	printf("%f\n", radian_ang);
 	int i = 0;
 	while (i < frm->row)
 	{
