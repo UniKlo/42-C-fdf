@@ -15,7 +15,7 @@ void	plot(char *data_img, int x, int y, float a)//a need to carry more info abou
 	int green = 255;
 	int blue = 255;
 
-	printf("alpha: %d\n", alpha);
+//	printf("alpha: %d\n", alpha);
 	*color++ = alpha;
 	*color++ = red;
 	*color++ = green;

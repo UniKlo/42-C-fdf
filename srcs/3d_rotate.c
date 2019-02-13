@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:24:56 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 14:22:33 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 17:16:08 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    z_rotation(t_vct *rot, double ang)
 
 void	rotate(t_frame *frm)
 {
-	int	ang = 30; //be able to change angel
+	int	ang = 5; //be able to change angel
 	double radian_ang = (ang * M_PI) / 180;
 	int i = 0;
 	while (i < frm->row)

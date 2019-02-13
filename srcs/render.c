@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:34:30 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 14:25:53 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 17:33:32 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	render(t_frame *frm)
 	project(frm);
 	recenter(frm);
 	draw_img(frm);
-	
+	mlx_put_image_to_window(frm->mlx, frm->win, frm->img, 0, 0);	
 }

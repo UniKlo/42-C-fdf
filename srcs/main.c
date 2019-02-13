@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 14:24:42 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 17:33:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ void	free_vct(t_frame *frm)
 		j = 0;
 		while(j < frm->col)
 		{
-			free(&frm->vct[i][j]);
-//				 .x);
-//			frm->vct[i][j].y;
-//			frm->vct[i][j].z;
+			free(&frm->vct[i][j].x);
+			free(&frm->vct[i][j].y);
+			free(&frm->vct[i][j].z);
 			j++;
 		}
 		i++;
@@ -108,12 +107,6 @@ int main(int argc, char **argv)
 
 //---initial position-----
 	get_digit_map(argv[1], &frm);
-	
-//	rotate(&frm);
-//	project(&frm);
-//---draw something------------
-//	draw_img(&frm);//test version, draw from image or put dots
-	mlx_put_image_to_window(frm.mlx, frm.win, frm.img, 0, 0);
 //clear_img
 
 	
