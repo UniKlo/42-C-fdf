@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 17:33:14 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/12 19:05:37 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,16 @@ int		deal_key(int key, t_frame *frm)
 	ft_putstr("world\n");
 	if (key == ESC_KEY)
 		  exit(0);
+	
 	if (key == RIGHT_KEY)
 		frm->center[1].x += 5;
-	//stage(frm);
+	if (key == LEFT_KEY)
+		frm->center[1].x -= 5;
+	if (key == DOWN_KEY)
+		frm->center[1].y += 5;
+	if (key == UP_KEY)
+		frm->center[1].y -= 5;
+	render(frm);
 	return (0);
 }
 
@@ -111,12 +118,12 @@ int main(int argc, char **argv)
 
 	
 //---key hook---------	
-	mlx_key_hook(frm.win, deal_key, (void *)0);
+	mlx_key_hook(frm.win, deal_key, &frm);
 //	mlx_hook(win, x_event, x_mask, (*funct)(), (void *)0);
 	mlx_loop(frm.mlx);
 
 //---after exit-------
-	mlx_destroy_image(frm.mlx, frm.img);
+//	mlx_destroy_image(frm.mlx, frm.img);
 	free_vct(&frm);//free the part that have been malloced in frame
 
 	return (0);
