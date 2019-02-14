@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stage.c                                            :+:      :+:    :+:   */
+/*   recenter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/10 20:34:30 by khou              #+#    #+#             */
-/*   Updated: 2019/02/13 18:21:11 by khou             ###   ########.fr       */
+/*   Created: 2019/02/12 14:27:42 by khou              #+#    #+#             */
+/*   Updated: 2019/02/13 17:31:36 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	render(t_frame *frm)
+void	recenter(t_frame *frm)
 {
-	scale(frm);//x,y,z
-	rotate(frm);//x,y,x
-	project(frm);//x,y
-	recenter(frm);//x,y
-/*
+	int y0 = frm->row/2;
+    int x0 = frm->col/2;
+	frm->center[0].x = WIN_W/2 - frm->vct[y0][x0].x;
+	frm->center[0].y = WIN_H/2 - frm->vct[y0][x0].y;
+//	frm->center.z = 0.8;
 	int i = 0;
-	int j;
 	while (i < frm->row)
 	{
-		j= 0;
+		int j = 0;
 		while (j < frm->col)
 		{
-			printf("x: %f, y: %f, z: %f\n",
-				   frm->vct[i][j].x, frm->vct[i][j].y, frm->vct[i][j].z);
+			frm->vct[i][j].x += frm->center[0].x + frm->center[1].x;
+			frm->vct[i][j].y += frm->center[0].y + frm->center[1].y;
 			j++;
 		}
 		i++;
 	}
-*/
-	draw_img(frm);
-	mlx_put_image_to_window(frm->mlx, frm->win, frm->img, 0, 0);	
 }

@@ -5,7 +5,6 @@
 //image version
 void	plot(char *data_img, int x, int y, float a)//a need to carry more info about color
 {
-	//int position = x * 4 + WIN_W * y * 4 - 1;
 	int position = (y * WIN_W + x) * 4 - 1;
 	if (position < 0 || position > WIN_H * WIN_W * 4)
 		return ;

@@ -6,17 +6,24 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 19:05:37 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/13 18:49:22 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	clear_img(t_frame *frm)
+{
+	int i = 0;
+	while ( i < WIN_W * WIN_H * 4)
+		frm->data_img[i++] = 0;
+}
+
+
 
 int		deal_key(int key, t_frame *frm)
 {
-	ft_printf("Hello\n");
-	ft_putstr("world\n");
+	ft_printf("pressed a key-------------------\n");
 	if (key == ESC_KEY)
 		  exit(0);
 	
@@ -28,10 +35,22 @@ int		deal_key(int key, t_frame *frm)
 		frm->center[1].y += 5;
 	if (key == UP_KEY)
 		frm->center[1].y -= 5;
+	clear_img(frm);
 	render(frm);
 	return (0);
 }
 
+int		deal_mouse(int mouse, t_frame *frm)
+{
+	ft_printf("touched a mouse------------------\n");
+	if (mouse == SCROLLUP_KEY)
+		frm->center[1].z += 5;
+	if (mouse == SCROLLDOWN_KEY)
+		frm->center[1].z -= 5;
+	clear_img(frm);
+	render(frm);
+	return (0);
+}
 int mlx_hook(void *win, int x_event, int x_mask, int (*funct)(), void *param);
 
 
@@ -45,11 +64,13 @@ void	frame_init(t_frame *frm)
 
 	frm->center[0].x = 0;//distance to center
 	frm->center[0].y = 0;//distance to center
-	frm->center[0].z = 0;
+	frm->center[0].z = 0;//deepth of z?!
 	frm->center[1].x = 0;// move right < 1, move left > 1
 	frm->center[1].y = 0;// move up < 1, move down > 1
-	frm->center[1].z = 0;//deepth 
+	frm->center[1].z = 0;// move far < 0, close > 0
 }
+
+
 
 void	free_vct(t_frame *frm)
 {
@@ -60,6 +81,9 @@ void	free_vct(t_frame *frm)
 		j = 0;
 		while(j < frm->col)
 		{
+			free(&frm->org[i][j].x);
+			free(&frm->org[i][j].y);
+			free(&frm->org[i][j].z);
 			free(&frm->vct[i][j].x);
 			free(&frm->vct[i][j].y);
 			free(&frm->vct[i][j].z);
@@ -106,19 +130,19 @@ int main(int argc, char **argv)
 //---image------
 	if (!(frm.img = mlx_new_image(frm.mlx, WIN_W, WIN_H)))
 		exit(0);
-	int bpp; // = 32;
-	int size_line; // = WIN_W * 4;
-	int endian; // = 0;
+	int bpp;
+	int size_line;
+	int endian;
 	if(!(frm.data_img = mlx_get_data_addr(frm.img, &bpp, &size_line, &endian)))
 		exit(0);
 
 //---initial position-----
 	get_digit_map(argv[1], &frm);
-//clear_img
 
 	
 //---key hook---------	
 	mlx_key_hook(frm.win, deal_key, &frm);
+	mlx_mouse_hook(frm.win, deal_mouse, &frm);
 //	mlx_hook(win, x_event, x_mask, (*funct)(), (void *)0);
 	mlx_loop(frm.mlx);
 

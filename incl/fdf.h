@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/12 14:38:11 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/13 18:31:18 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct		s_frame
 	int			row;
 	int			dot_size;
 	int				scale;
+	t_vct	**org;
 	t_vct	**vct;
 	t_vct	ai_pxl[2];//max, min, width, hight, need to init
 	t_vct	center[2];
