@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 18:41:10 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/14 18:49:38 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int		deal_key(int key, t_frame *frm)
 		frm->ang.z += 1;
 	if (key == E_KEY)
 		frm->ang.z -= 1;
-	if (key == NKMN_KEY)
-		frm->center[0].z /= 2;
-	if (key == NKPL_KEY)
-		frm->center[0].z *= 2;
+	if (key == MN_KEY)
+		frm->center[0].z -= 0.01;
+	if (key == PL_KEY)
+		frm->center[0].z += 0.01;
 		
 	clear_img(frm);
 	render(frm);

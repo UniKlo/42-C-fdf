@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 18:35:12 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/14 18:47:38 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,8 @@
 */
 
 # define ESC_KEY 53
-
-/*
-** Numeric keyboard keys, preceded by NK
-** NKEQ_KEY is the equal (=) key
-** NKSL_KEY is the slash (/) key
-** NKWC_KEY is the wildcard (*) key
-** NKMN_KEY is the minus (-) key
-** NKPL_KEY is the plus (+) key
-** NKPT_KEY is the point (.) key
-** NKNTR_KEY is the enter key
-*/
-
-# define NKMN_KEY 78
-# define NKPL_KEY 69
+# define MN_KEY 27
+# define PL_KEY 24
 
 /*
 ** Letters keys
