@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3d_rotate.c                                        :+:      :+:    :+:   */
+/*   xyz_rotation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/01 19:24:56 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 18:12:56 by khou             ###   ########.fr       */
+/*   Created: 2019/02/14 22:00:58 by khou              #+#    #+#             */
+/*   Updated: 2019/02/14 22:01:00 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,33 @@
 
 void	x_rotation(t_vct *rot, double ang)
 {
-	float	y = rot->y;
-	float	z = rot->z;
+	float	y;
+	float	z;
+
+	y = rot->y;
+	z = rot->z;
 	rot->y = y * cos(ang) + z * sin(ang);
 	rot->z = -y * sin(ang) + z * cos(ang);
 }
 
-void    y_rotation(t_vct *rot, double ang)
+void	y_rotation(t_vct *rot, double ang)
 {
-	float	x = rot->x;
-	float	z = rot->z;
+	float	x;
+	float	z;
+
+	x = rot->x;
+	z = rot->z;
 	rot->x = x * cos(ang) + z * sin(ang);
 	rot->z = -x * sin(ang) + z * cos(ang);
 }
 
-void    z_rotation(t_vct *rot, double ang)
+void	z_rotation(t_vct *rot, double ang)
 {
-	float	x = rot->x;
-	float	y = rot->y;
+	float	x;
+	float	y;
+
+	x = rot->x;
+	y = rot->y;
 	rot->x = x * cos(ang) - y * sin(ang);
 	rot->y = x * sin(ang) + y * cos(ang);
 }
@@ -43,10 +52,13 @@ float	radian_ang(int angle)
 
 void	rotate(t_frame *frm)
 {
-	int i = 0;
+	int i;
+	int j;
+
+	i = 0;
 	while (i < frm->row)
 	{
-		int j = 0;
+		j = 0;
 		while (j < frm->col)
 		{
 			x_rotation(&frm->vct[i][j], radian_ang(frm->ang.x));

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/13 18:55:52 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/14 22:23:23 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 void	get_coordinates(char *str, t_frame *frm)
 {
-	int fd;
-	fd = open(str, O_RDONLY);
-    char	*line = NULL;
+	int		fd;
+	char	*line;
+	int		i;
+	int		j;
+	int		z;
 
-	int i = 0;//index of the array of struct
-	int j;
-	int z;
-	
+	line = NULL;
+	fd = open(str, O_RDONLY);
+	i = 0;
 	frm->org = malloc(sizeof(t_vct *) * frm->row);
 	while (get_next_line(fd, &line))
 	{
-		frm->org[i] =  malloc(sizeof(t_vct) * frm->col);
+		frm->org[i] = malloc(sizeof(t_vct) * frm->col);
 		j = 0;
-		while(getnbr(&line, &z) && j < frm->col)
+		while (getnbr(&line, &z) && j < frm->col)
 		{
 			frm->org[i][j].x = j;
 			frm->org[i][j].y = i;
@@ -39,29 +40,30 @@ void	get_coordinates(char *str, t_frame *frm)
 	close(fd);
 }
 
-void get_map_size(char *str, t_frame *frm)
+void	get_map_size(char *str, t_frame *frm)
 {
-	int fd;
+	int		fd;
+	char	*line;
+	int		row_size;
+	int		column_size;
+	int		z;
+
+	line = NULL;
+	row_size = 0;
+	column_size = 0;
 	if ((fd = open(str, O_RDONLY)) == -1)
 	{
-		perror("Error");//?
-		exit (0);
+		perror("Error");
+		exit(0);
 	}
-    char	*line = NULL;
-    int		row_size = 0;
-    int		column_size = 0;
-    int		z;
 	while (get_next_line(fd, &line))
-	{
 		row_size++;
-//		printf("%s\n", line);
-	}
 	while (getnbr(&line, &z))
 		column_size++;
-	close (fd); //size of malloc based on rows and colu of the last row.
+	close(fd);
 	frm->col = column_size;
 	frm->row = row_size;
-	frm->dot_size = row_size * column_size; 
+	frm->dot_size = row_size * column_size;
 	printf("nbr of row: %d, nbr of column: %d\n", row_size, column_size);
 }
 

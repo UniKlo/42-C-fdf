@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   recenter.c                                         :+:      :+:    :+:   */
+/*   mlx_img.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 14:27:42 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 22:49:27 by khou             ###   ########.fr       */
+/*   Created: 2019/02/15 00:06:08 by khou              #+#    #+#             */
+/*   Updated: 2019/02/15 00:06:38 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	recenter(t_frame *frm)
+void	fill_img(char *data_img, int x, int y, float a)//a need to carry more info about color
 {
-	int x0;
-	int y0;
-	int i;
-	int j;
+	int position = (y * WIN_W + x) * 4 - 1;
+	if (position < 0 || position > WIN_H * WIN_W * 4)
+		return ;
+	char *color = &data_img[position];
+	int alpha = 255 * a;
+	int red = 255;
+	int green = 255;
+	int blue = 255;
 
-	x0 = frm->col / 2;
-	y0 = frm->row / 2;
-	frm->center[0].x = WIN_W / 2 - frm->vct[y0][x0].x;
-	frm->center[0].y = WIN_H / 2 - frm->vct[y0][x0].y;
-	i = 0;
-	while (i < frm->row)
-	{
-		j = 0;
-		while (j < frm->col)
-		{
-			frm->vct[i][j].x += frm->center[0].x + frm->center[1].x;
-			frm->vct[i][j].y += frm->center[0].y + frm->center[1].y;
-			j++;
-		}
-		i++;
-	}
-}
+//	printf("alpha: %d\n", alpha);
+	*color++ = alpha;
+	*color++ = red;
+	*color++ = green;
+	*color = blue;
+ }

@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2019/02/12 14:36:54 by khou             ###   ########.fr        #
+#    Updated: 2019/02/15 00:11:31 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,8 +22,8 @@ DIR_S = srcs/
 
 HEADER = fdf.h
 
-SOURCES = main.c    get_digit_map.c render.c scale.c  3d_rotate.c  project.c\
-          centering.c  draw_thing.c\
+SOURCES = main.c    get_digit_map.c render.c scale.c  xyz_rotation.c  project.c\
+          centering.c  draw_anti_aliased.c mlx_img.c\
 
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))

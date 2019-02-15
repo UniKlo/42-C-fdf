@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 18:47:38 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/15 00:08:47 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct	s_vct
 	float		z;
 }				t_vct;
 
-typedef struct		s_frame
+typedef struct	s_frame
 {
 	void		*mlx;
 	void		*win;
@@ -89,15 +89,14 @@ typedef struct		s_frame
 	int			col;
 	int			row;
 	int			dot_size;
-	int				scale;
-	t_vct	**org;
-	t_vct	**vct;
-	t_vct	ai_pxl[2];//max, min, width, hight, need to init
-	t_vct	center[2];
-	t_vct	ang;
+	int			scale;
+	t_vct		**org;
+	t_vct		**vct;
+	t_vct		ai_pxl[2];//max, min, width, hight, need to init
+	t_vct		center[2];
+	t_vct		ang;
 	int			pxl_size;
-  //	t_plist		plist; //size & t_point *list
-}			t_frame;
+}				t_frame;
 
 /*
 ** -----------------------------------------------------------------------------
@@ -105,12 +104,14 @@ typedef struct		s_frame
 ** -----------------------------------------------------------------------------
 */
 
-void	get_digit_map(char *str, t_frame *frm);
-void	render(t_frame *frm);
-void	scale(t_frame *frm);
-void	recenter(t_frame *frm);
-void	rotate(t_frame *frm);
-void	project(t_frame *frm);
-void	recenter(t_frame *frm);
-void    draw_img(t_frame *frm);
+void			get_digit_map(char *str, t_frame *frm);
+void			render(t_frame *frm);
+void			scale(t_frame *frm);
+float			radian_ang(int angle);
+void			rotate(t_frame *frm);
+void			project(t_frame *frm);
+void			recenter(t_frame *frm);
+void			draw_img(t_frame *frm);
+void			fill_img(char *data_img, int x, int y, float a);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 18:49:38 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/14 22:34:40 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int		deal_key(int key, t_frame *frm)
 	if (key == UP_KEY)
 		frm->center[1].y -= 5;
 	if (key == A_KEY)
-		frm->ang.y += 1;
-	if (key == D_KEY)
 		frm->ang.y -= 1;
+	if (key == D_KEY)
+		frm->ang.y += 1;
 	if (key == W_KEY)
 		frm->ang.x -= 1;
 	if (key == S_KEY)
 		frm->ang.x += 1;
 	if (key == Q_KEY)
-		frm->ang.z += 1;
-	if (key == E_KEY)
 		frm->ang.z -= 1;
+	if (key == E_KEY)
+		frm->ang.z += 1;
 	if (key == MN_KEY)
 		frm->center[0].z -= 0.01;
 	if (key == PL_KEY)
@@ -61,9 +61,9 @@ int		deal_mouse(int mouse, t_frame *frm)
 {
 	ft_printf("touched a mouse------------------\n");
 	if (mouse == SCROLLUP_KEY)
-		frm->center[1].z += 5;
+		frm->center[1].z += 0.01;
 	if (mouse == SCROLLDOWN_KEY)
-		frm->center[1].z -= 5;
+		frm->center[1].z -= 0.01;
 	clear_img(frm);
 	render(frm);
 	return (0);
@@ -81,10 +81,10 @@ void	frame_init(t_frame *frm)
 
 	frm->center[0].x = 0;//distance to center
 	frm->center[0].y = 0;//distance to center
-	frm->center[0].z = 0.2;//deepth of z?!
+	frm->center[0].z = 0.2;//deepth of z
 	frm->center[1].x = 0;// move right < 1, move left > 1
 	frm->center[1].y = 0;// move up < 1, move down > 1
-	frm->center[1].z = 0;// move far < 0, close > 0
+	frm->center[1].z = 0;// further < 0, closer > 0
 	frm->ang.x = 5;
 	frm->ang.y = 5;
 	frm->ang.z = 5;
