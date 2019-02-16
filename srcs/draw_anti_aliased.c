@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_anti_aliased.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/15 00:15:57 by khou              #+#    #+#             */
+/*   Updated: 2019/02/15 00:46:26 by khou             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
 
@@ -23,9 +33,14 @@ float	rst_frc_part(float nbr)
 {
 	return (1 - frc_part(nbr));
 }
-void	draw_line(t_frame *frm, float x1, float y1, float x2, float y2)//change them all to float. projection points could be float.
+void	draw_line(t_frame *frm, float x1, float y1, float x2, float y2)
 {
-	int steep = fabs(y1 - y2) > fabs(x1 - x2) ? 1 : 0;
+	int steep;
+	float	dx;
+	float	dy;
+	float	slope;
+	
+	steep = fabs(y1 - y2) > fabs(x1 - x2) ? 1 : 0;
 	if (steep)
 	{
 		swap(&x1, &y1);
@@ -36,62 +51,59 @@ void	draw_line(t_frame *frm, float x1, float y1, float x2, float y2)//change the
 		swap(&x1, &x2);
 		swap(&y1, &y2);
 	}
-	float	dx = x2 - x1;
-	float	dy = y2 - y1;
-	float	slope;
+	dx = x2 - x1;
+	dy = y2 - y1;
 	if (dx == 0)
 		slope = 1;
-	slope = dy / dx;
-
-	int		xpxl1 = x1;
-	int		xpxl2 = x2;
-	float	y = y1;
-
-	int		x = xpxl1;
-	 
+	else
+		slope = dy / dx;	 
 	if (steep)
 	{
-		while (x <= xpxl2)
+		while (x1 <= x2)
 		{
 			if (slope > 0)
 			{
-				fill_img(frm->data_img, int_part(y), x, rst_frc_part(y));
-				fill_img(frm->data_img, int_part(y) +1, x, frc_part(y));
+				fill_img(frm->data_img, int_part(y1), x1, rst_frc_part(y1));
+				fill_img(frm->data_img, int_part(y1) + 1, x1, frc_part(y1));
 			}
-			else if (slope <= 0)
+			else if (slope < 0)
 			{
-				fill_img(frm->data_img, int_part(y), x, rst_frc_part(y));
-				fill_img(frm->data_img, int_part(y) -1, x, frc_part(y));
+				fill_img(frm->data_img, int_part(y1), x1, rst_frc_part(y1));
+				fill_img(frm->data_img, int_part(y1) - 1, x1, frc_part(y1));
 			}
-			y += slope;
-			x++;
+			else
+				fill_img(frm->data_img, int_part(y1), x1, rst_frc_part(y1));
+			y1 += slope;
+			x1++;
 		}
 	}
 	else
 	{
-		while (x <= xpxl2)
+		while (x1 <= x2)
 		{
 			if (slope > 0)
 			{
-				fill_img(frm->data_img, x, int_part(y), rst_frc_part(y));
-				fill_img(frm->data_img, x, int_part(y) +1, frc_part(y));
+				fill_img(frm->data_img, x1, int_part(y1), rst_frc_part(y1));
+				fill_img(frm->data_img, x1, int_part(y1) + 1, frc_part(y1));
 			}
-			else if (slope <= 0)
+			else if (slope < 0)
 			{
-				fill_img(frm->data_img, x, int_part(y), rst_frc_part(y));
-				fill_img(frm->data_img, x, int_part(y) -1, frc_part(y));
+				fill_img(frm->data_img, x1, int_part(y1), rst_frc_part(y1));
+				fill_img(frm->data_img, x1, int_part(y1) - 1, frc_part(y1));
 			}
-			y += slope;
-			x++;
+			else
+				fill_img(frm->data_img, x1, int_part(y1), rst_frc_part(y1));
+			y1 += slope;
+			x1++;
 		}
 	}
-		
 }
 
 void	draw_img(t_frame *frm)
 {
- 	int i = 0;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < frm->row)
 	{
@@ -100,10 +112,10 @@ void	draw_img(t_frame *frm)
 		{
 			if (i < frm->row - 1)
 				draw_line(frm, frm->vct[i][j].x, frm->vct[i][j].y,
-						  frm->vct[i+1][j].x, frm->vct[i+1][j].y);
+						frm->vct[i + 1][j].x, frm->vct[i + 1][j].y);
 			if (j < frm->col - 1)
 				draw_line(frm, frm->vct[i][j].x, frm->vct[i][j].y,
-						  frm->vct[i][j+1].x, frm->vct[i][j + 1].y);
+						frm->vct[i][j + 1].x, frm->vct[i][j + 1].y);
 			j++;
 		}
 		i++;
