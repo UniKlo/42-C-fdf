@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:53:29 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/16 01:14:54 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define Q_KEY 12
 # define W_KEY 13
 # define E_KEY 14
+# define R_KEY 15
 
 /*
 ** Arrow keys
@@ -116,5 +117,5 @@ void			fill_img(char *data_img, int x, int y, float a);
 int				deal_key(int key, t_frame *frm);
 int				deal_mouse(int mouse, t_frame *frm);
 int				red_close(void *param);
-
+void	frame_init(t_frame *frm);
 #endif

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:36:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:25:56 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/16 01:27:08 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	apply_scale(t_frame *frm)
 
 	i = 0;
 	deepth = frm->center[0].z;
-	printf("deepth: %f\n", deepth);
 	frm->vct = malloc(sizeof(t_vct *) * frm->row);
 	while (i < frm->row)
 	{
@@ -47,6 +46,5 @@ void	scale(t_frame *frm)
 	unit_col = WIN_W * 0.6 / (frm->col);
 	scale = unit_row <= unit_col ? unit_row : unit_col;
 	frm->scale = scale + frm->center[1].z;
-	printf("scale: %d, zoom: %f\n", frm->scale, frm->center[1].z);
 	apply_scale(frm);
 }

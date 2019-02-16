@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:25:14 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:35:39 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/16 01:14:31 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		deal_key(int key, t_frame *frm)
 	key == S_KEY ? frm->ang.x += 1 : 0;
 	key == Q_KEY ? frm->ang.z -= 1 : 0;
 	key == E_KEY ? frm->ang.z += 1 : 0;
+	key == R_KEY ? frame_init(frm) : 0;
 	key == MN_KEY ? frm->center[0].z -= 0.01 : 0;
 	key == PL_KEY ? frm->center[0].z += 0.01 : 0;
 	render(frm);
