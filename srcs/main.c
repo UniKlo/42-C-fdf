@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:04:52 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/15 16:54:41 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,11 @@ int main(int argc, char **argv)
 	mlx_hook(frm.win, 2, 0, deal_key, &frm);
 	mlx_hook(frm.win, 4, 0, deal_mouse, &frm);
 	mlx_hook(frm.win, 17, 0, red_close, &frm);
+	mlx_loop_hook(frm.mlx, render, &frm);
 	mlx_loop(frm.mlx);
 
 //---after exit-------
-//	mlx_destroy_image(frm.mlx, frm.img);
+	mlx_destroy_image(frm.mlx, frm.img);
 	free_vct(&frm);//free the part that have been malloced in frame
 
 	return (0);

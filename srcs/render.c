@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:34:30 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:20:15 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/15 16:53:06 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	clear_img(t_frame *frm)
 		frm->data_img[i++] = 0;
 }
 
-void	render(t_frame *frm)
+int		render(t_frame *frm)
 {
 	clear_img(frm);
 	scale(frm);//x,y,z
@@ -30,4 +30,5 @@ void	render(t_frame *frm)
 	recenter(frm);//x,y
 	draw_img(frm);
 	mlx_put_image_to_window(frm->mlx, frm->win, frm->img, 0, 0);
+	return (0);
 }

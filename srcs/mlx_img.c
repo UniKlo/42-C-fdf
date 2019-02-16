@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 00:06:08 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:00:48 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/15 17:18:43 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	fill_img(char *data_img, int x, int y, float a)//a need to carry more info about color
 {
+	if (a == 0)
+		return ;
 	int position = (y * WIN_W + x) * 4 - 1;
 	if (position < 0 || position > WIN_H * WIN_W * 4)
 		return ;

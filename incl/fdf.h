@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:22:39 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/15 16:53:29 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct	s_frame
 */
 
 void			get_digit_map(char *str, t_frame *frm);
-void			render(t_frame *frm);
+int			render(t_frame *frm);
 void			scale(t_frame *frm);
 float			radian_ang(int angle);
 void			rotate(t_frame *frm);

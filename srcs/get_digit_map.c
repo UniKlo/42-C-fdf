@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 22:23:23 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/15 16:48:39 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ void	get_digit_map(char *str, t_frame *frm)
 {
 	get_map_size(str, frm);
 	get_coordinates(str, frm);
-	render(frm);
+//	render(frm);
 }
