@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:25:14 by khou              #+#    #+#             */
-/*   Updated: 2019/02/16 01:14:31 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/16 19:03:02 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,16 @@ int		deal_key(int key, t_frame *frm)
 	key == R_KEY ? frame_init(frm) : 0;
 	key == MN_KEY ? frm->center[0].z -= 0.01 : 0;
 	key == PL_KEY ? frm->center[0].z += 0.01 : 0;
-	render(frm);
 	return (0);
 }
 
-int		deal_mouse(int mouse, t_frame *frm)
+int		deal_mouse(int mouse, int x, int y, t_frame *frm)
 {
 	ft_printf("touched a mouse------------------\n");
-	printf("zoom: %f\n", frm->center[1].z);
-	mouse == SCROLLUP_KEY ? frm->center[1].z += 0.01 : 0;
-	mouse == SCROLLDOWN_KEY ? frm->center[1].z -= 0.01 : 0;
-	render(frm);
+	x = 0;
+	y = 0;
+	mouse == SCROLLUP_KEY ? frm->center[1].z += 1 : 0;
+	mouse == SCROLLDOWN_KEY ? frm->center[1].z -= 1 : 0;
 	return (0);
 }
 

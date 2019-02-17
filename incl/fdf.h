@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/16 01:14:54 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/16 17:04:18 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void			recenter(t_frame *frm);
 void			draw_img(t_frame *frm);
 void			fill_img(char *data_img, int x, int y, float a);
 int				deal_key(int key, t_frame *frm);
-int				deal_mouse(int mouse, t_frame *frm);
+int				deal_mouse(int mouse, int x, int y,t_frame *frm);
 int				red_close(void *param);
 void	frame_init(t_frame *frm);
 #endif
