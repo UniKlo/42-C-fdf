@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 22:00:58 by khou              #+#    #+#             */
-/*   Updated: 2019/02/17 20:46:17 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/18 02:47:38 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	rotate(t_frame *frm)
 			x_rotation(&frm->vct[i][j], radian_ang(frm->ang.x));
 			y_rotation(&frm->vct[i][j], radian_ang(frm->ang.y));
 			z_rotation(&frm->vct[i][j], radian_ang(frm->ang.z));
-			
 			j++;
 		}
 		i++;
