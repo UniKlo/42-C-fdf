@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 00:25:24 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/18 01:22:16 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	get_coordinates(char *str, t_frame *frm)
 //					   ft_nbrlen_base(frm->org[i][j].c, 16), line);
 //				while (1);
 				}
-//			printf("z: %f, c: %d\n", frm->org[i][j].z, frm->org[i][j].c);
+//s			printf("z: %f, c: %d\n", frm->org[i][j].z, frm->org[i][j].c);
 			j++;
 		}
 		free(tmp);
