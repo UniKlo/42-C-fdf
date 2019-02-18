@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 02:49:57 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/18 03:06:03 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	get_coordinates(char *str, t_frame *frm)
 				line += 3;
 				frm->org[i][j].c = ft_atoi_base(line, 16);
 				line += ft_nbrlen_base(frm->org[i][j].c, 16);
-				}
+			}
 			j++;
 		}
 		free(tmp);
@@ -53,12 +53,8 @@ void	get_map_size(char *str, t_frame *frm)
 {
 	int		fd;
 	char	*line;
-	int		row_size;
-	int		column_size;
 
 	line = NULL;
-	row_size = 0;
-	column_size = 0;
 	if ((fd = open(str, O_RDONLY)) == -1)
 	{
 		perror("Error");
@@ -66,20 +62,18 @@ void	get_map_size(char *str, t_frame *frm)
 	}
 	while (get_next_line(fd, &line))
 	{
-		if (column_size != 0 && column_size != ft_count_nbr_block(line, ' '))
+		if (frm->col != 0 && frm->col != ft_count_nbr_block(line, ' '))
 		{
 			printf("Not a rectangle\n");
 			exit(0);
 		}
-		column_size = ft_count_nbr_block(line, ' ');
-		row_size++;
+		frm->col = ft_count_nbr_block(line, ' ');
+		frm->row++;
 		free(line);
 	}
 	close(fd);
-	frm->col = column_size;
-	frm->row = row_size;
-	frm->dot_size = row_size * column_size;
-	printf("nbr of row: %d, nbr of column: %d\n", row_size, column_size);
+	frm->dot_size = frm->row * frm->col;
+	printf("nbr of row: %d, nbr of column: %d\n", frm->row, frm->col);
 }
 
 void	get_digit_map(char *str, t_frame *frm)
