@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:27:59 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 00:24:01 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/18 01:08:25 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,56 +21,23 @@ char	valid_char(char c)
 
 int	ft_atoi_base(const char *str, int str_base)
 {
+	int nbr;
+	int sign;
 
-	int time_base = 0;
-	int nbr = 0;
-	int sign = 1;
+	nbr = 0;
+	sign = 0;
 	if (str[0] == '-')
 	{
 		sign = -1;
 		++str;
 	}
-
 	while (*str && valid_char(*str))
 	{
-		if (time_base == 1)
-		{
-			nbr *= str_base;
-			time_base = 0;
-		}
-		if (*str >= '0' && *str <= '9')
-            nbr += *str - '0';
-		if (*str >= 'a' && *str <= 'f')
-            nbr += *str - 'a' + 10;
-		if (*str >= 'A' && *str <= 'F')
-            nbr += *str - 'A' + 10;
+		nbr *= str_base;
+		*str >= '0' && *str <= '9' ? nbr += *str - '0' : 0;
+		*str >= 'a' && *str <= 'f' ? nbr += *str - 'a' + 10 : 0;
+		*str >= 'A' && *str <= 'F' ? nbr += *str - 'A' + 10 : 0;
 		str++;
-		time_base = 1;
 	}
-	if (sign)
-		nbr = sign * nbr;
-	return (nbr);	
+	return (sign ? nbr = sign * nbr : nbr);	
 }
-
-/*
-#include <stdio.h>
-
-int		main()
-{
-	char str[] = "0";
-	int str_base = 2;
-	int ret = ft_atoi_base(str, str_base);
-	printf("%d\n", ret);
-
-	char str1[] = "-314-Ab";
-    int str_base1 = 8;
-    ret = ft_atoi_base(str1, str_base1);
-	printf("%d\n", ret);
-
-	char str2[] = "0aB";
-    int str_base2 = 16;
-    ret = ft_atoi_base(str2, str_base2);
-	printf("%d\n", ret);
-	return (0);
-}
-*/
