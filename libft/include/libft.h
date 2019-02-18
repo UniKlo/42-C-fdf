@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 21:41:13 by khou              #+#    #+#             */
-/*   Updated: 2018/11/29 15:49:04 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/17 17:53:55 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,12 @@ int						pt_putstr_fd(char const *s, int fd, int len);
 */
 
 int						ft_atoi(const char *nptr);
+int						ft_atoi_base(const char *str, int str_base);
 char					*ft_itoa(int n);
+char					*ft_itoa_base(int nbr, int base);
 double					ft_atof(const char *str);
 int						ft_nbrlen(uintmax_t nbr);
+int						ft_nbrlen_base(int nbr, int base);
 
 /*
 ** string

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:25:14 by khou              #+#    #+#             */
-/*   Updated: 2019/02/16 19:03:02 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/17 21:47:06 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		deal_key(int key, t_frame *frm)
 {
 	ft_printf("pressed a key-------------------\n");
-	key == ESC_KEY ? exit(0) : 0;
+	key == ESC_KEY ? red_close(frm) : 0;
 	key == RIGHT_KEY ? frm->center[1].x += 5 : 0;
 	key == LEFT_KEY ? frm->center[1].x -= 5 : 0;
 	key == DOWN_KEY ? frm->center[1].y += 5 : 0;
@@ -42,9 +42,9 @@ int		deal_mouse(int mouse, int x, int y, t_frame *frm)
 	return (0);
 }
 
-int		red_close(void *param)
+int		red_close(t_frame *frm)
 {
-	(void)param;
+	mlx_destroy_image(frm->mlx, frm->img);
 	exit(0);
 	return (0);
 }

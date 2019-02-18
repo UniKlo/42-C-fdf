@@ -63,26 +63,26 @@ void	draw_line(t_frame *frm, float x1, float y1, float x2, float y2)
 		{
 			if (slope >= 0)
 			{
-				fill_img(frm->data_img, int_part(y1), x1, rst_frc_part(y1));
-				fill_img(frm->data_img, int_part(y1) + 1, x1, frc_part(y1));
+				fill_img(frm, int_part(y1), x1, rst_frc_part(y1));
+				fill_img(frm, int_part(y1) + 1, x1, frc_part(y1));
 			}
 			else if (slope < 0)
 			{
-				fill_img(frm->data_img, int_part(y1), x1, rst_frc_part(y1));
-				fill_img(frm->data_img, int_part(y1) - 1, x1, frc_part(y1));
+				fill_img(frm, int_part(y1), x1, rst_frc_part(y1));
+				fill_img(frm, int_part(y1) - 1, x1, frc_part(y1));
 			}
 		}
 		else
 		{
 			if (slope >= 0)
 			{
-				fill_img(frm->data_img, x1, int_part(y1), rst_frc_part(y1));
-				fill_img(frm->data_img, x1, int_part(y1) + 1, frc_part(y1));
+				fill_img(frm, x1, int_part(y1), rst_frc_part(y1));
+				fill_img(frm, x1, int_part(y1) + 1, frc_part(y1));
 			}
 			else if (slope < 0)
 			{
-				fill_img(frm->data_img, x1, int_part(y1), rst_frc_part(y1));
-				fill_img(frm->data_img, x1, int_part(y1) - 1, frc_part(y1));
+				fill_img(frm, x1, int_part(y1), rst_frc_part(y1));
+				fill_img(frm, x1, int_part(y1) - 1, frc_part(y1));
 			}
 		}
 		y1 += slope;

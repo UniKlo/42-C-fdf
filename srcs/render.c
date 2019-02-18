@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:34:30 by khou              #+#    #+#             */
-/*   Updated: 2019/02/16 01:31:53 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/16 19:42:20 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		render(t_frame *frm)
 	clear_img(frm);
 	scale(frm);//x,y,z
 	rotate(frm);//x,y,x
+	printf("maz_z: %f, min_z: %f\n", frm->ai_z.x, frm->ai_z.y);
 	project(frm);//x,y
 	recenter(frm);//x,y
 	draw_img(frm);

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 21:21:38 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:54:41 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/17 21:00:25 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 void	frame_init(t_frame *frm)
 {
-	frm->ai_pxl[0].x = 0;
-	frm->ai_pxl[0].y = 0;
-	frm->ai_pxl[1].x = 0;
-	frm->ai_pxl[1].y = 0;
+	frm->ai_z.x = 0;
+	frm->ai_z.y = 0;
+//	frm->ai_z[1].x = 0;
+//	frm->ai_z[1].y = 0;
 
 
 	frm->center[0].x = 0;
@@ -43,7 +43,7 @@ void	frame_init(t_frame *frm)
 }
 
 
-
+/*
 void	free_vct(t_frame *frm)
 {
 	int i = 0;
@@ -56,16 +56,18 @@ void	free_vct(t_frame *frm)
 			free(&frm->org[i][j].x);
 			free(&frm->org[i][j].y);
 			free(&frm->org[i][j].z);
+			free(&frm->org[i][j].c);
 			free(&frm->vct[i][j].x);
 			free(&frm->vct[i][j].y);
 			free(&frm->vct[i][j].z);
+			free(&frm->vct[i][j].c);
 			j++;
 		}
 		i++;
 		
 	}
 }
-
+*/
 void	endwith(char *str, char *word)
 {
 	int l_str = ft_strlen(str);
@@ -118,10 +120,5 @@ int main(int argc, char **argv)
 	mlx_hook(frm.win, 17, 0, red_close, &frm);
 	mlx_loop_hook(frm.mlx, render, &frm);
 	mlx_loop(frm.mlx);
-
-//---after exit-------
-	mlx_destroy_image(frm.mlx, frm.img);
-	free_vct(&frm);//free the part that have been malloced in frame
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 16:48:39 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/17 21:46:10 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,27 @@ void	get_coordinates(char *str, t_frame *frm)
 	{
 		frm->org[i] = malloc(sizeof(t_vct) * frm->col);
 		j = 0;
+		char *tmp = line;
 		while (getnbr(&line, &z) && j < frm->col)
 		{
 			frm->org[i][j].x = j;
 			frm->org[i][j].y = i;
 			frm->org[i][j].z = z;
+			frm->org[i][j].c = 0;
+			if (*line == ',')
+			{
+				line += 3;
+				frm->org[i][j].c = ft_atoi_base(line, 16);
+				line += ft_nbrlen_base(frm->org[i][j].c, 16);
+			}
 			j++;
 		}
+		free(tmp);
 		i++;
 	}
 	close(fd);
 }
+
 
 void	get_map_size(char *str, t_frame *frm)
 {
@@ -46,8 +56,7 @@ void	get_map_size(char *str, t_frame *frm)
 	char	*line;
 	int		row_size;
 	int		column_size;
-	int		z;
-
+	
 	line = NULL;
 	row_size = 0;
 	column_size = 0;
@@ -57,9 +66,16 @@ void	get_map_size(char *str, t_frame *frm)
 		exit(0);
 	}
 	while (get_next_line(fd, &line))
+	{
+		if (column_size != 0 && column_size != ft_count_nbr_block(line, ' '))
+		{
+			printf("Not a rectangle\n");
+			exit(0);
+		}
+		column_size = ft_count_nbr_block(line, ' ');
 		row_size++;
-	while (getnbr(&line, &z))
-		column_size++;
+		free(line);
+	}
 	close(fd);
 	frm->col = column_size;
 	frm->row = row_size;
@@ -71,5 +87,4 @@ void	get_digit_map(char *str, t_frame *frm)
 {
 	get_map_size(str, frm);
 	get_coordinates(str, frm);
-//	render(frm);
 }

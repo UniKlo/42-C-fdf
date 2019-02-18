@@ -6,34 +6,53 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:36:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/16 01:27:08 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/17 21:46:02 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	deepth_ai(t_vct *ai_z, float z)
+{
+
+	if (z >= 0 && z > ai_z->x)
+		ai_z->x = z;
+	if (z < 0 && z < ai_z->y)
+		ai_z->y = z;
+}
 
 void	apply_scale(t_frame *frm)
 {
 	int		i;
 	int		j;
 	float	deepth;
-
+	static  int first = 1;
+	
+	
 	i = 0;
 	deepth = frm->center[0].z;
+	if (first)
 	frm->vct = malloc(sizeof(t_vct *) * frm->row);
 	while (i < frm->row)
 	{
+		if (first)
 		frm->vct[i] = malloc(sizeof(t_vct) * frm->col);
 		j = 0;
 		while (j < frm->col)
 		{
+		
+			deepth_ai(&frm->ai_z, frm->org[i][j].z);
+			
 			frm->vct[i][j].x = frm->org[i][j].x * frm->scale;
 			frm->vct[i][j].y = frm->org[i][j].y * frm->scale;
 			frm->vct[i][j].z = frm->org[i][j].z * frm->scale * deepth;
+			frm->vct[i][j].c = frm->org[i][j].c;
+			
 			j++;
 		}
 		i++;
 	}
+	first = 0;
 }
 
 void	scale(t_frame *frm)

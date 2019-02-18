@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 00:33:32 by khou              #+#    #+#             */
-/*   Updated: 2019/02/14 22:31:07 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/16 22:47:43 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	pixel_measure(t_vct *ai_pxl, t_vct *pjt)
 }
 */
 
-void	pjt_true_iso(t_vct *pjt)//turn vct to pjt
+void	pjt_true_iso(t_frame *frm, t_vct *pjt)//turn vct to pjt
 {
 	int iso = 30;
 	float	x;
@@ -49,7 +49,7 @@ void	pjt_true_iso(t_vct *pjt)//turn vct to pjt
 	z = pjt->z;
 	pjt->x = (x - y) * cos(radian_ang(iso));
 	pjt->y = (x + y) * sin(radian_ang(iso)) - z;
-	pjt->z = 0;
+	pjt->z = fabs(z) / frm->ai_z.x;//how deep cmp to Max
 }
 
 void	project(t_frame *frm)
@@ -63,7 +63,7 @@ void	project(t_frame *frm)
 		j = 0;
 		while (j < frm->col)
 		{
-			pjt_true_iso(&frm->vct[i][j]);
+			pjt_true_iso(frm, &frm->vct[i][j]);
 			j++;
 		}
 		i++;

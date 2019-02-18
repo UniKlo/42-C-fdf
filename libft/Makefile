@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/11/29 15:51:00 by khou             ###   ########.fr        #
+#    Updated: 2019/02/17 17:59:19 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,6 +41,7 @@ LIBFT = ft_atoi.c		ft_bzero.c		ft_count_nbr_block.c	ft_isalnum.c\
 		ft_strnew.c		ft_strnstr.c	ft_strrchr.c			ft_strsplit.c\
 		ft_strstr.c		ft_strsub.c		ft_strtrim.c			ft_tolower.c\
 		ft_toupper.c	ft_nbrlen.c		get_next_line.c			getnbr.c\
+		ft_itoa_base.c	ft_atoi_base.c	ft_nbrlen_base.c
 
 SOURCES =	 printf.c		fmt_dispatch.c			grab_fmt.c\
 			 p_diuox.c		p_s.c			p_c.c\

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/16 17:04:18 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/17 20:57:33 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct	s_vct
 	float		x;
 	float		y;
 	float		z;
+	int		c;
 }				t_vct;
 
 typedef struct	s_frame
@@ -93,7 +94,7 @@ typedef struct	s_frame
 	int			scale;
 	t_vct		**org;
 	t_vct		**vct;
-	t_vct		ai_pxl[2];//max, min, width, hight, need to init
+	t_vct		ai_z;//max, min, width, hight, need to init
 	t_vct		center[2];
 	t_vct		ang;
 	int			pxl_size;
@@ -113,9 +114,9 @@ void			rotate(t_frame *frm);
 void			project(t_frame *frm);
 void			recenter(t_frame *frm);
 void			draw_img(t_frame *frm);
-void			fill_img(char *data_img, int x, int y, float a);
+void			fill_img(t_frame *frm, int x, int y, float a);
 int				deal_key(int key, t_frame *frm);
 int				deal_mouse(int mouse, int x, int y,t_frame *frm);
-int				red_close(void *param);
+int				red_close(t_frame *frm);
 void	frame_init(t_frame *frm);
 #endif
