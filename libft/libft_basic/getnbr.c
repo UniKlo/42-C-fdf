@@ -6,12 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 15:20:33 by khou              #+#    #+#             */
-/*   Updated: 2019/02/01 15:46:22 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/18 00:09:27 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
-#include <stdio.h>
 
 int     getnbr(char **line, int *nbr)
 {
