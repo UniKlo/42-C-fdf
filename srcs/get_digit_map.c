@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 01:22:16 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/18 02:49:57 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,9 @@ void	get_coordinates(char *str, t_frame *frm)
 			if (*line == ',')
 			{
 				line += 3;
-//				printf("line: %.10s\n", line);
-//				printf("nbr_before: %d, ", ft_atoi_base(line, 16));
 				frm->org[i][j].c = ft_atoi_base(line, 16);
-//				printf("nbr_after: %d, ", frm->org[i][j].c);
 				line += ft_nbrlen_base(frm->org[i][j].c, 16);
-//				printf("nbrlen: %d, %.20s\n",
-//					   ft_nbrlen_base(frm->org[i][j].c, 16), line);
-//				while (1);
 				}
-//s			printf("z: %f, c: %d\n", frm->org[i][j].z, frm->org[i][j].c);
 			j++;
 		}
 		free(tmp);
@@ -56,14 +49,13 @@ void	get_coordinates(char *str, t_frame *frm)
 	close(fd);
 }
 
-
 void	get_map_size(char *str, t_frame *frm)
 {
 	int		fd;
 	char	*line;
 	int		row_size;
 	int		column_size;
-	
+
 	line = NULL;
 	row_size = 0;
 	column_size = 0;
