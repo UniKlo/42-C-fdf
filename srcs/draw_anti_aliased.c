@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 00:15:57 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 23:24:53 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 02:10:25 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,7 @@ void	draw_line(t_frame *frm, t_vct p1, t_vct p2)
 	}
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
-	if (dx == 0)
-		slope = 1;
-	else
-		slope = dy / dx;
+	slope = dx == 0 ? 1 : dy / dx;
 	while (p1.x <= p2.x)
 	{
 		if (steep)

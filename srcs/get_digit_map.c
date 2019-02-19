@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/19 00:44:45 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 02:40:50 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	malloc_map(char *str, t_frame *frm)
 	char	*line;
 	int		i;
 	int		j;
-	char 	*tmp;
+	char	*tmp;
 
 	line = NULL;
 	fd = open(str, O_RDONLY);
@@ -48,7 +48,7 @@ void	malloc_map(char *str, t_frame *frm)
 		tmp = line;
 		while (j < frm->col)
 		{
- 			get_coordinates(&line, &frm->org[i][j], i, j);
+			get_coordinates(&line, &frm->org[i][j], i, j);
 			j++;
 		}
 		free(tmp);
