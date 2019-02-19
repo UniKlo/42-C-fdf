@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:34:30 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 02:23:34 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 03:13:07 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,27 @@ void	clear_img(t_frame *frm)
 	i = 0;
 	while (i < WIN_W * WIN_H * 4)
 		frm->data_img[i++] = 0;
+}
+
+void	draw_img(t_frame *frm)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < frm->row)
+	{
+		j = 0;
+		while (j < frm->col)
+		{
+			if (i < frm->row - 1)
+				draw_line(frm, frm->vct[i][j], frm->vct[i + 1][j]);
+			if (j < frm->col - 1)
+				draw_line(frm, frm->vct[i][j], frm->vct[i][j + 1]);
+			j++;
+		}
+		i++;
+	}
 }
 
 int		render(t_frame *frm)

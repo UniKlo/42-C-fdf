@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 00:15:57 by khou              #+#    #+#             */
-/*   Updated: 2019/02/19 02:10:25 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 03:15:52 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,45 @@ void	swap(double *a, double *b)
 	*b = tmp;
 }
 
-int		int_part(double nbr)
-{
-	return (floor(nbr));
-}
-
 double	frc_part(double nbr)
 {
 	return (ceil(nbr) - nbr);
 }
 
-double	rst_frc_part(double nbr)
+void	draw_w_slope(t_frame *frm, double x, double y)
 {
-	return (1 - frc_part(nbr));
+	if (frm->slope >= 0)
+	{
+		fill_img(frm, floor(x), y, 1 - frc_part(y));
+		fill_img(frm, floor(x) + 1, y, frc_part(y));
+	}
+	else if (frm->slope < 0)
+	{
+		fill_img(frm, floor(x), y, 1 - frc_part(y));
+		fill_img(frm, floor(x) - 1, y, frc_part(y));
+	}
+}
+
+void	draw_btw_dots(t_frame *frm, t_vct p1, t_vct p2)
+{
+	while (p1.x <= p2.x)
+	{
+		if (frm->steep)
+			draw_w_slope(frm, p1.y, p1.x);
+		else
+			draw_w_slope(frm, p1.x, p1.y);
+		p1.y += frm->slope;
+		p1.x++;
+	}
 }
 
 void	draw_line(t_frame *frm, t_vct p1, t_vct p2)
 {
-	int		steep;
 	double	dx;
 	double	dy;
-	double	slope;
 
-	steep = fabs(p1.y - p2.y) > fabs(p1.x - p2.x) ? 1 : 0;
-	if (steep)
+	frm->steep = fabs(p1.y - p2.y) > fabs(p1.x - p2.x) ? 1 : 0;
+	if (frm->steep)
 	{
 		swap(&p1.x, &p1.y);
 		swap(&p2.x, &p2.y);
@@ -56,57 +71,6 @@ void	draw_line(t_frame *frm, t_vct p1, t_vct p2)
 	}
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
-	slope = dx == 0 ? 1 : dy / dx;
-	while (p1.x <= p2.x)
-	{
-		if (steep)
-		{
-			if (slope >= 0)
-			{
-				fill_img(frm, int_part(p1.y), p1.x, rst_frc_part(p1.y));
-				fill_img(frm, int_part(p1.y) + 1, p1.x, frc_part(p1.y));
-			}
-			else if (slope < 0)
-			{
-				fill_img(frm, int_part(p1.y), p1.x, rst_frc_part(p1.y));
-				fill_img(frm, int_part(p1.y) - 1, p1.x, frc_part(p1.y));
-			}
-		}
-		else
-		{
-			if (slope >= 0)
-			{
-				fill_img(frm, p1.x, int_part(p1.y), rst_frc_part(p1.y));
-				fill_img(frm, p1.x, int_part(p1.y) + 1, frc_part(p1.y));
-			}
-			else if (slope < 0)
-			{
-				fill_img(frm, p1.x, int_part(p1.y), rst_frc_part(p1.y));
-				fill_img(frm, p1.x, int_part(p1.y) - 1, frc_part(p1.y));
-			}
-		}
-		p1.y += slope;
-		p1.x++;
-	}
-}
-
-void	draw_img(t_frame *frm)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < frm->row)
-	{
-		j = 0;
-		while (j < frm->col)
-		{
-			if (i < frm->row - 1)
-				draw_line(frm, frm->vct[i][j], frm->vct[i + 1][j]);
-			if (j < frm->col - 1)
-				draw_line(frm, frm->vct[i][j], frm->vct[i][j + 1]);
-			j++;
-		}
-		i++;
-	}
+	frm->slope = dx == 0 ? 1 : dy / dx;
+	draw_btw_dots(frm, p1, p2);
 }
