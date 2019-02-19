@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 15:20:33 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 02:05:56 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 15:16:51 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int		getnbr(char **line, int *nbr)
 {
 	while (**line)
 	{
-		while (ft_isspace(**line) && **line)
-			(*line)++;
-		if (!**line)
-			return (0);
-		if (ft_isdigit(**line) || **line == '-')
+		if (ft_isspace(**line))
+			;
+		else if (ft_isdigit(**line) || **line == '-')
 		{
 			*nbr = atoi(*line);
 			if (*nbr < 0)

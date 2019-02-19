@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:25:14 by khou              #+#    #+#             */
-/*   Updated: 2019/02/17 21:47:06 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 15:46:05 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		deal_key(int key, t_frame *frm)
 {
-	ft_printf("pressed a key-------------------\n");
+	ft_printf("pressed %d key-------------------\n", key);
 	key == ESC_KEY ? red_close(frm) : 0;
 	key == RIGHT_KEY ? frm->center[1].x += 5 : 0;
 	key == LEFT_KEY ? frm->center[1].x -= 5 : 0;

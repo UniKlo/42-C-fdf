@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:34:30 by khou              #+#    #+#             */
-/*   Updated: 2019/02/19 03:13:07 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 15:39:43 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	clear_img(t_frame *frm)
 	while (i < WIN_W * WIN_H * 4)
 		frm->data_img[i++] = 0;
 }
+
+/*
+**to right and to down
+*/
 
 void	draw_img(t_frame *frm)
 {

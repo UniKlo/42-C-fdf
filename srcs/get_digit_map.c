@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/19 02:40:50 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 15:41:22 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	get_coordinates(char **line, t_vct *org, int i, int j)
 		org->c = ft_atoi_base(*line, 16);
 		*line += ft_nbrlen_base(org->c, 16);
 	}
+//	printf("x:%f, y: %f, z: %f, c: %d\n", org->x, org->y, org->z, org->c);
 }
 
 void	malloc_map(char *str, t_frame *frm)
@@ -72,7 +73,7 @@ void	get_map_size(char *str, t_frame *frm)
 	{
 		if (frm->col != 0 && frm->col != ft_count_nbr_block(line, ' '))
 		{
-			printf("Not a rectangle\n");
+			ft_printf("Not a rectangle\n");
 			exit(0);
 		}
 		frm->col = ft_count_nbr_block(line, ' ');
@@ -81,7 +82,7 @@ void	get_map_size(char *str, t_frame *frm)
 	}
 	close(fd);
 	frm->dot_size = frm->row * frm->col;
-	printf("nbr of row: %d, nbr of column: %d\n", frm->row, frm->col);
+	ft_printf("nbr of row: %d, nbr of column: %d\n", frm->row, frm->col);
 }
 
 void	get_digit_map(char *str, t_frame *frm)

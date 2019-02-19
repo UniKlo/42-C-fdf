@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:36:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 02:28:42 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 15:46:33 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	apply_scale(t_frame *frm)
 			frm->vct[i][j].y = frm->org[i][j].y * frm->scale;
 			frm->vct[i][j].z = frm->org[i][j].z * frm->scale * frm->center[0].z;
 			frm->vct[i][j].c = frm->org[i][j].c;
+//			printf("x:%f, y: %f, z: %f, c: %d\n",
+//			   frm->vct[i][j].x, frm->vct[i][j].y, frm->vct[i][j].z, frm->vct[i][j].c);
 			j++;
 		}
 		i++;
