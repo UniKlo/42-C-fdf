@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	swap(float *a, float *b)
+void	swap(double *a, double *b)
 {
 	int tmp;
 
@@ -21,17 +21,17 @@ void	swap(float *a, float *b)
 	*b = tmp;
 }
 
-int		int_part(float nbr)
+int		int_part(double nbr)
 {
 	return (floor(nbr));
 }
 
-float	frc_part(float nbr)
+double	frc_part(double nbr)
 {
 	return (ceil(nbr) - nbr);
 }
 
-float	rst_frc_part(float nbr)
+double	rst_frc_part(double nbr)
 {
 	return (1 - frc_part(nbr));
 }
@@ -39,9 +39,9 @@ float	rst_frc_part(float nbr)
 void	draw_line(t_frame *frm, t_vct p1, t_vct p2)
 {
 	int		steep;
-	float	dx;
-	float	dy;
-	float	slope;
+	double	dx;
+	double	dy;
+	double	slope;
 
 	steep = fabs(p1.y - p2.y) > fabs(p1.x - p2.x) ? 1 : 0;
 	if (steep)

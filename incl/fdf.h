@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/17 20:57:33 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 00:02:50 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@
 
 typedef struct	s_vct
 {
-	float		x;
-	float		y;
-	float		z;
+	double		x;
+	double		y;
+	double		z;
 	int		c;
 }				t_vct;
 
@@ -109,12 +109,12 @@ typedef struct	s_frame
 void			get_digit_map(char *str, t_frame *frm);
 int			render(t_frame *frm);
 void			scale(t_frame *frm);
-float			radian_ang(int angle);
+double			radian_ang(int angle);
 void			rotate(t_frame *frm);
 void			project(t_frame *frm);
 void			recenter(t_frame *frm);
 void			draw_img(t_frame *frm);
-void			fill_img(t_frame *frm, int x, int y, float a);
+void			fill_img(t_frame *frm, int x, int y, double a);
 int				deal_key(int key, t_frame *frm);
 int				deal_mouse(int mouse, int x, int y,t_frame *frm);
 int				red_close(t_frame *frm);

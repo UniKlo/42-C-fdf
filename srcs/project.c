@@ -19,9 +19,9 @@
 void	pjt_true_iso(t_frame *frm, t_vct *pjt)
 {
 	int		iso;
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 
 	iso = 30;
 	x = pjt->x;

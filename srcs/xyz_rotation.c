@@ -14,8 +14,8 @@
 
 void	x_rotation(t_vct *rot, double ang)
 {
-	float	y;
-	float	z;
+	double	y;
+	double	z;
 
 	y = rot->y;
 	z = rot->z;
@@ -25,8 +25,8 @@ void	x_rotation(t_vct *rot, double ang)
 
 void	y_rotation(t_vct *rot, double ang)
 {
-	float	x;
-	float	z;
+	double	x;
+	double	z;
 
 	x = rot->x;
 	z = rot->z;
@@ -36,8 +36,8 @@ void	y_rotation(t_vct *rot, double ang)
 
 void	z_rotation(t_vct *rot, double ang)
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 
 	x = rot->x;
 	y = rot->y;
@@ -45,7 +45,7 @@ void	z_rotation(t_vct *rot, double ang)
 	rot->y = x * sin(ang) + y * cos(ang);
 }
 
-float	radian_ang(int angle)
+double	radian_ang(int angle)
 {
 	return ((angle * M_PI) / 180);
 }

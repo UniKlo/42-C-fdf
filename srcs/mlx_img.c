@@ -16,7 +16,7 @@
 **need to carry more info about color
 */
 
-void	fill_img(t_frame *frm, int x, int y, float a)
+void	fill_img(t_frame *frm, int x, int y, double a)
 {
 	int		position;
 	char	*color;

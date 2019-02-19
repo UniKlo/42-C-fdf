@@ -6,19 +6,36 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/18 03:06:03 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 00:44:45 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	get_coordinates(char *str, t_frame *frm)
+void	get_coordinates(char **line, t_vct *org, int i, int j)
+{
+	int	z;
+
+	getnbr(line, &z);
+	org->x = j;
+	org->y = i;
+	org->z = z;
+	org->c = 0;
+	if (**line == ',')
+	{
+		*line += 3;
+		org->c = ft_atoi_base(*line, 16);
+		*line += ft_nbrlen_base(org->c, 16);
+	}
+}
+
+void	malloc_map(char *str, t_frame *frm)
 {
 	int		fd;
 	char	*line;
 	int		i;
 	int		j;
-	int		z;
+	char 	*tmp;
 
 	line = NULL;
 	fd = open(str, O_RDONLY);
@@ -28,19 +45,10 @@ void	get_coordinates(char *str, t_frame *frm)
 	{
 		frm->org[i] = malloc(sizeof(t_vct) * frm->col);
 		j = 0;
-		char *tmp = line;
-		while (getnbr(&line, &z) && j < frm->col)
+		tmp = line;
+		while (j < frm->col)
 		{
-			frm->org[i][j].x = j;
-			frm->org[i][j].y = i;
-			frm->org[i][j].z = z;
-			frm->org[i][j].c = 0;
-			if (*line == ',')
-			{
-				line += 3;
-				frm->org[i][j].c = ft_atoi_base(line, 16);
-				line += ft_nbrlen_base(frm->org[i][j].c, 16);
-			}
+ 			get_coordinates(&line, &frm->org[i][j], i, j);
 			j++;
 		}
 		free(tmp);
@@ -79,5 +87,5 @@ void	get_map_size(char *str, t_frame *frm)
 void	get_digit_map(char *str, t_frame *frm)
 {
 	get_map_size(str, frm);
-	get_coordinates(str, frm);
+	malloc_map(str, frm);
 }

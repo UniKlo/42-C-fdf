@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	deepth_ai(t_vct *ai_z, float z)
+void	deepth_ai(t_vct *ai_z, double z)
 {
 	if (z >= 0 && z > ai_z->x)
 		ai_z->x = z;
