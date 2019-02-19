@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 14:42:19 by khou              #+#    #+#             */
-/*   Updated: 2019/02/19 03:15:33 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 03:27:52 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FDF_H
+#ifndef FDF_H
 # define FDF_H
 
 /*
@@ -94,11 +94,11 @@ typedef struct	s_frame
 	int			scale;
 	t_vct		**org;
 	t_vct		**vct;
-	t_vct		ai_z;//max, min, width, hight, need to init
+	t_vct		ai_z;
 	t_vct		center[2];
 	t_vct		ang;
-	int		steep;
-	double	slope;
+	int			steep;
+	double		slope;
 	int			pxl_size;
 }				t_frame;
 
@@ -118,7 +118,8 @@ void			recenter(t_frame *frm);
 void			draw_line(t_frame *frm, t_vct p1, t_vct p2);
 void			fill_img(t_frame *frm, int x, int y, double a);
 int				deal_key(int key, t_frame *frm);
-int				deal_mouse(int mouse, int x, int y,t_frame *frm);
+int				deal_mouse(int mouse, int x, int y, t_frame *frm);
 int				red_close(t_frame *frm);
 void			frame_init(t_frame *frm);
+
 #endif
