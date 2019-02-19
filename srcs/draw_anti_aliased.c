@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 00:15:57 by khou              #+#    #+#             */
-/*   Updated: 2019/02/15 17:21:40 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/18 23:24:53 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	swap(float *a, float *b)
 {
-	int tmp = *a;
+	int tmp;
+
+	tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
@@ -33,60 +35,61 @@ float	rst_frc_part(float nbr)
 {
 	return (1 - frc_part(nbr));
 }
-void	draw_line(t_frame *frm, float x1, float y1, float x2, float y2)
+
+void	draw_line(t_frame *frm, t_vct p1, t_vct p2)
 {
-	int steep;
+	int		steep;
 	float	dx;
 	float	dy;
 	float	slope;
-	
-	steep = fabs(y1 - y2) > fabs(x1 - x2) ? 1 : 0;
+
+	steep = fabs(p1.y - p2.y) > fabs(p1.x - p2.x) ? 1 : 0;
 	if (steep)
 	{
-		swap(&x1, &y1);
-		swap(&x2, &y2);
+		swap(&p1.x, &p1.y);
+		swap(&p2.x, &p2.y);
 	}
-	if (x2 < x1)
+	if (p2.x < p1.x)
 	{
-		swap(&x1, &x2);
-		swap(&y1, &y2);
+		swap(&p1.x, &p2.x);
+		swap(&p1.y, &p2.y);
 	}
-	dx = x2 - x1;
-	dy = y2 - y1;
+	dx = p2.x - p1.x;
+	dy = p2.y - p1.y;
 	if (dx == 0)
 		slope = 1;
 	else
-		slope = dy / dx;	 
-	while (x1 <= x2)
+		slope = dy / dx;
+	while (p1.x <= p2.x)
 	{
 		if (steep)
 		{
 			if (slope >= 0)
 			{
-				fill_img(frm, int_part(y1), x1, rst_frc_part(y1));
-				fill_img(frm, int_part(y1) + 1, x1, frc_part(y1));
+				fill_img(frm, int_part(p1.y), p1.x, rst_frc_part(p1.y));
+				fill_img(frm, int_part(p1.y) + 1, p1.x, frc_part(p1.y));
 			}
 			else if (slope < 0)
 			{
-				fill_img(frm, int_part(y1), x1, rst_frc_part(y1));
-				fill_img(frm, int_part(y1) - 1, x1, frc_part(y1));
+				fill_img(frm, int_part(p1.y), p1.x, rst_frc_part(p1.y));
+				fill_img(frm, int_part(p1.y) - 1, p1.x, frc_part(p1.y));
 			}
 		}
 		else
 		{
 			if (slope >= 0)
 			{
-				fill_img(frm, x1, int_part(y1), rst_frc_part(y1));
-				fill_img(frm, x1, int_part(y1) + 1, frc_part(y1));
+				fill_img(frm, p1.x, int_part(p1.y), rst_frc_part(p1.y));
+				fill_img(frm, p1.x, int_part(p1.y) + 1, frc_part(p1.y));
 			}
 			else if (slope < 0)
 			{
-				fill_img(frm, x1, int_part(y1), rst_frc_part(y1));
-				fill_img(frm, x1, int_part(y1) - 1, frc_part(y1));
+				fill_img(frm, p1.x, int_part(p1.y), rst_frc_part(p1.y));
+				fill_img(frm, p1.x, int_part(p1.y) - 1, frc_part(p1.y));
 			}
 		}
-		y1 += slope;
-		x1++;
+		p1.y += slope;
+		p1.x++;
 	}
 }
 
@@ -102,11 +105,9 @@ void	draw_img(t_frame *frm)
 		while (j < frm->col)
 		{
 			if (i < frm->row - 1)
-				draw_line(frm, frm->vct[i][j].x, frm->vct[i][j].y,
-						frm->vct[i + 1][j].x, frm->vct[i + 1][j].y);
+				draw_line(frm, frm->vct[i][j], frm->vct[i + 1][j]);
 			if (j < frm->col - 1)
-				draw_line(frm, frm->vct[i][j].x, frm->vct[i][j].y,
-						frm->vct[i][j + 1].x, frm->vct[i][j + 1].y);
+				draw_line(frm, frm->vct[i][j], frm->vct[i][j + 1]);
 			j++;
 		}
 		i++;
