@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 01:23:44 by khou              #+#    #+#             */
-/*   Updated: 2019/02/19 15:41:22 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/19 15:59:27 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	get_coordinates(char **line, t_vct *org, int i, int j)
 		org->c = ft_atoi_base(*line, 16);
 		*line += ft_nbrlen_base(org->c, 16);
 	}
-//	printf("x:%f, y: %f, z: %f, c: %d\n", org->x, org->y, org->z, org->c);
 }
 
 void	malloc_map(char *str, t_frame *frm)
